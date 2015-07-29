@@ -32,6 +32,14 @@
   <ItemGroup>
     <Compile Include="UTSHelps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\MainFrame.cs" />
+    <Compile Include="View\LatestPage.cs" />
+    <Compile Include="Model\Sessions.cs" />
+    <Compile Include="Model\Session.cs" />
+    <Compile Include="Model\Bookings.cs" />
+    <Compile Include="Model\Booking.cs" />
+    <Compile Include="Model\BookingStatuses.cs" />
+    <Compile Include="Controller\LatestController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -45,5 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
+    <Folder Include="View\Sessions\" />
+    <Folder Include="Res\" />
+    <Folder Include="Res\Images\" />
+    <Folder Include="Res\Icons\" />
+    <Folder Include="Model\" />
+    <Folder Include="Controller\" />
   </ItemGroup>
 </Project>
