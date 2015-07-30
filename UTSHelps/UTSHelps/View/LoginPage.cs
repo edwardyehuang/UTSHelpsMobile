@@ -33,7 +33,7 @@ namespace UTSHelps.View
 			HorizontalOptions = LayoutOptions.FillAndExpand,
 			VerticalOptions = LayoutOptions.FillAndExpand,
 		};
-
+			
 		protected Label titleLabel = new Label
 		{
 			Text = "UTS:Helps",
@@ -46,19 +46,27 @@ namespace UTSHelps.View
 
 		public LoginPage ()
 		{
-			BackgroundColor = App.utsBackgroundColor;
+			BackgroundColor = Color.White;
 			var signButtons = new StackLayout {
 				Orientation = StackOrientation.Horizontal,
 				Children = {SignInButton, OfflineButton},
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
 
-
-			Content = new StackLayout {
-				Spacing = 20,
-				Children = { titleLabel, UsernameEntry, PasswordEntry, signButtons },
+			Content = new Frame {
+				HasShadow = true,
+				OutlineColor = Color.Silver,
+				Padding = 25,
+				BackgroundColor = App.utsBackgroundColor,
+				Content = new StackLayout {
+					Spacing = 20,
+					Children = { titleLabel, UsernameEntry, PasswordEntry, signButtons },
+					VerticalOptions = LayoutOptions.FillAndExpand,
+					HorizontalOptions = LayoutOptions.FillAndExpand,
+				},
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				Opacity = 0.75,
 			};
 		}
 	}

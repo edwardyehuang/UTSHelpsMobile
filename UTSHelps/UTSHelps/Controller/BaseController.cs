@@ -9,7 +9,7 @@ namespace UTSHelps
 	{
 		public Page View { get; set; }
 
-		public BaseController (Page view = null)
+		public BaseController (Page view)
 		{
 			View = view;
 			RegViewEvents ();
@@ -18,12 +18,12 @@ namespace UTSHelps
 
 		public virtual void RegViewEvents()
 		{
-
+			View.Appearing += (object sender, EventArgs e) => UpdateData ();
 		}
 
 		public virtual void UpdateData()
 		{
-
+			
 		}
 	}
 }

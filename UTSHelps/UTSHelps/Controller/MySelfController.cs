@@ -12,6 +12,12 @@ namespace UTSHelps
 		{
 			
 		}
+
+		public override void UpdateData ()
+		{
+			base.UpdateData ();
+
+		}
 	}
 }
 
