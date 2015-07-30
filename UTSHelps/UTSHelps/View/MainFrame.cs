@@ -1,4 +1,5 @@
 ﻿using System;
+using UTSHelps;
 using Xamarin.Forms;
 
 namespace UTSHelps.View
@@ -8,15 +9,8 @@ namespace UTSHelps.View
 		public MainFrame ()
 		{
 			this.Title = "UTS Helps";	//Title of the mainframe
-			BuildChildViews ();
-		}
+			this.BackgroundColor = App.utsColor;
 
-		protected void BuildChildViews()
-		{
-			this.Children.Add (new LatestPage ());
-			this.Children.Add (GetDefaultPage ("Sessions"));
-			this.Children.Add (GetDefaultPage ("Booking"));
-			this.Children.Add (GetDefaultPage ("MySelf"));
 		}
 
 		private ContentPage GetDefaultPage(string title, string text = "")

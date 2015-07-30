@@ -2,18 +2,20 @@
 
 using Xamarin.Forms;
 using UTSHelps.View;
+using UTSHelps.Controller;
 
 namespace UTSHelps
 {
 	public class App : Application
 	{
 		private NavigationPage mainNavigationPage;
-		private Color utsColor = new Color(0, 0.6, 0.8);
+		private MainFrameController mainFrame = new MainFrameController ();
+		public static Color utsColor = new Color(0, 0.6, 0.8);
 
 		public App ()
 		{
 			// The root page of your application
-			MainPage = mainNavigationPage = new NavigationPage(new MainFrame());
+			MainPage = mainNavigationPage = new NavigationPage(mainFrame.View);
 
 			//The code below can be improved such as using the themes
 			mainNavigationPage.BarBackgroundColor = utsColor;

@@ -10,6 +10,8 @@ namespace UTSHelps.View
 		public LatestPage ()
 		{
 			Title = "Latest";
+			Icon = "icon_latest";
+
 		}
 	}
 }

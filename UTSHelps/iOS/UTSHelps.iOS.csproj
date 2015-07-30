@@ -98,6 +98,18 @@
     <BundleResource Include="Resources\Icon-Small-40.png" />
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
     <BundleResource Include="Resources\Icon-Small-40%403x.png" />
+    <BundleResource Include="Resources\icon_latest.png" />
+    <BundleResource Include="Resources\icon_latest%402x.png" />
+    <BundleResource Include="Resources\icon_latest%403x.png" />
+    <BundleResource Include="Resources\icon_sessions.png" />
+    <BundleResource Include="Resources\icon_sessions%402x.png" />
+    <BundleResource Include="Resources\icon_sessions%403x.png" />
+    <BundleResource Include="Resources\icon_booking.png" />
+    <BundleResource Include="Resources\icon_booking%402x.png" />
+    <BundleResource Include="Resources\icon_booking%403x.png" />
+    <BundleResource Include="Resources\icon_self.png" />
+    <BundleResource Include="Resources\icon_self%402x.png" />
+    <BundleResource Include="Resources\icon_self%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
