@@ -10,7 +10,8 @@ namespace UTSHelps
 	{
 		private NavigationPage mainNavigationPage;
 		private MainFrameController mainFrame = new MainFrameController ();
-		public static Color utsColor = new Color(0, 0.6, 0.8);
+		public static Color utsBackgroundColor = new Color(0, 0.6, 0.8);
+		public static Color utsButtonColor = new Color(0, 0.745, 1);
 
 		public App ()
 		{
@@ -18,7 +19,7 @@ namespace UTSHelps
 			MainPage = mainNavigationPage = new NavigationPage(mainFrame.View);
 
 			//The code below can be improved such as using the themes
-			mainNavigationPage.BarBackgroundColor = utsColor;
+			mainNavigationPage.BarBackgroundColor = utsBackgroundColor;
 			mainNavigationPage.BarTextColor = Color.White;
 		}
 

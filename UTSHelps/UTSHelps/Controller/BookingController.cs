@@ -5,9 +5,8 @@ namespace UTSHelps
 {
 	public class BookingController : BaseController
 	{
-		public BookingController ()
+		public BookingController () : base(new BookingPage())
 		{
-			View = new BookingPage ();
 		}
 	}
 }

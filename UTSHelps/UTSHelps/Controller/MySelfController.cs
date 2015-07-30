@@ -1,13 +1,16 @@
 ﻿using System;
 using UTSHelps.View;
+using UTSHelps.Model;
 
 namespace UTSHelps
 {
 	public class MySelfController : BaseController
 	{
-		public MySelfController ()
+		protected MySelf mySelf = new MySelf();
+
+		public MySelfController () : base(new MySelfPage())
 		{
-			View = new MySelfPage ();
+			
 		}
 	}
 }

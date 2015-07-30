@@ -5,9 +5,8 @@ namespace UTSHelps
 {
 	public class SessionsController : BaseController
 	{
-		public SessionsController ()
+		public SessionsController () : base(new SessionsPage())
 		{
-			View = new SessionsPage ();
 		}
 	}
 }

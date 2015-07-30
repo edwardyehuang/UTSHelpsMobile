@@ -9,9 +9,21 @@ namespace UTSHelps
 	{
 		public Page View { get; set; }
 
-		public BaseController ()
+		public BaseController (Page view = null)
 		{
-			
+			View = view;
+			RegViewEvents ();
+			UpdateData ();
+		}
+
+		public virtual void RegViewEvents()
+		{
+
+		}
+
+		public virtual void UpdateData()
+		{
+
 		}
 	}
 }

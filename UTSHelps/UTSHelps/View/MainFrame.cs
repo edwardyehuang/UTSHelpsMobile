@@ -9,7 +9,7 @@ namespace UTSHelps.View
 		public MainFrame ()
 		{
 			this.Title = "UTS Helps";	//Title of the mainframe
-			this.BackgroundColor = App.utsColor;
+			this.BackgroundColor = App.utsBackgroundColor;
 
 		}
 

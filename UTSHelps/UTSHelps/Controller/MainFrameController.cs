@@ -11,10 +11,23 @@ namespace UTSHelps.Controller
 		protected BookingController bookingCtrl = new BookingController();
 		protected MySelfController mySelfCtrl = new MySelfController();
 
-		public MainFrameController ()
+		protected LoginController loginCtrl = new LoginController();
+
+		private bool bLogged = false;
+
+		public MainFrameController () : base(new MainFrame())
 		{
-			View = new MainFrame ();
+
+			if (!bLogged) {
+				View.Navigation.PushModalAsync(loginCtrl.View);
+			}
+
 			BuildChildViews ();
+		}
+
+		protected void ShowLoginPage()
+		{
+
 		}
 
 		protected void BuildChildViews()

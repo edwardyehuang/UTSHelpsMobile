@@ -5,9 +5,9 @@ namespace UTSHelps.Controller
 {
 	public class LatestController : BaseController
 	{
-		public LatestController ()
+		public LatestController () : base(new LatestPage())
 		{
-			View = new LatestPage ();
+
 		}
 
 
