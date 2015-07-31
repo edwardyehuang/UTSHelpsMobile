@@ -9,7 +9,7 @@ namespace UTSHelps.View
 	public class LoginPage : ContentPage
 	{
 		public Entry UsernameEntry { protected set;  get; } = new Entry {
-			Placeholder = "Student Number"
+			Placeholder = "Student Number",
 		};
 		public Entry PasswordEntry { protected set; get; } = new Entry {
 			Placeholder = "Password",
@@ -37,12 +37,28 @@ namespace UTSHelps.View
 		protected Label titleLabel = new Label
 		{
 			Text = "UTS:Helps",
-			FontSize = 55,
+			FontSize = 45,
 			TextColor = Color.White,
 			HorizontalOptions = LayoutOptions.Center,
 			VerticalOptions = LayoutOptions.Center,
 
 		};
+
+		public Frame LoginFrame { protected set; get; }
+
+		protected Grid mainGrid = new Grid {
+			VerticalOptions = LayoutOptions.FillAndExpand,
+			HorizontalOptions = LayoutOptions.FillAndExpand,
+			RowDefinitions = { 
+				new RowDefinition {
+					Height = new GridLength (7, GridUnitType.Star),
+				}, 
+				new RowDefinition {
+					Height = new GridLength (5, GridUnitType.Star),
+				}
+			},
+		};
+
 
 		public LoginPage ()
 		{
@@ -53,7 +69,7 @@ namespace UTSHelps.View
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 			};
 
-			Content = new Frame {
+			LoginFrame = new Frame {
 				HasShadow = true,
 				OutlineColor = Color.Silver,
 				Padding = 25,
@@ -68,7 +84,44 @@ namespace UTSHelps.View
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				Opacity = 0.75,
 			};
+				
+			mainGrid.Children.Add (new WebView{
+				Source = new UrlWebViewSource
+				{
+					Url = "http://38.media.tumblr.com/a123606e52db443841a6bb982d93febe/tumblr_n7a40sXB7P1r2geqjo1_r1_500.gif",
+				},
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+			}, 0, 1, 0, 2);
+
+			mainGrid.Children.Add (new ContentView {
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+			}, 0, 1, 0, 2);
+
+			mainGrid.Children.Add (LoginFrame
+			, 0, 1, 0, 2);
+
+			Content = mainGrid;
+				
+			UsernameEntry.Focused += (object sender, FocusEventArgs e) => MoveFrameUp();
+			PasswordEntry.Focused += (object sender, FocusEventArgs e) => MoveFrameUp();
+			UsernameEntry.Unfocused += (object sender, FocusEventArgs e) => MoveFrameDown();
+			PasswordEntry.Unfocused += (object sender, FocusEventArgs e) => MoveFrameDown();
 		}
+
+		protected void MoveFrameUp ()
+		{
+			Grid.SetRowSpan (LoginFrame, 1);
+			mainGrid.BackgroundColor = Color.Silver;
+		}
+
+		protected void MoveFrameDown ()
+		{
+			Grid.SetRowSpan (LoginFrame, 2);
+			mainGrid.BackgroundColor = Color.White;
+		}
+
 	}
 }
 
