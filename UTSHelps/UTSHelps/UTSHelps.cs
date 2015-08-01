@@ -17,6 +17,7 @@ namespace UTSHelps
 		{
 			// The root page of your application
 			MainPage = mainNavigationPage = new NavigationPage(mainFrame.View);
+			NavigationPage.SetBackButtonTitle (mainNavigationPage, "Back");
 
 			//The code below can be improved such as using the themes
 			mainNavigationPage.BarBackgroundColor = utsBackgroundColor;

@@ -19,15 +19,16 @@ namespace UTSHelps.Controller
 		{
 
 			if (!bLogged) {
-				View.Navigation.PushModalAsync(loginCtrl.View);
+				ShowLoginPage ();
 			}
 
 			BuildChildViews ();
+
 		}
 
 		protected void ShowLoginPage()
 		{
-
+			View.Navigation.PushModalAsync(loginCtrl.View, false);
 		}
 
 		protected void BuildChildViews()

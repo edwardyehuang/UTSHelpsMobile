@@ -13,12 +13,15 @@ namespace UTSHelps.View
 			Text = "Default User",
 			ImageSource = "icon_self",
 			Detail = "Default user info",
+
+			
 		};
 
 		public MySelfPage ()
 		{
 			Title = "MySelf";
 			Icon = "icon_self";
+			NavigationPage.SetBackButtonTitle (this, "Back");
 
 			BasicInfoSection = new TableSection {
 				AvatarCell,

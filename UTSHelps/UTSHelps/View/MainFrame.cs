@@ -10,7 +10,7 @@ namespace UTSHelps.View
 		{
 			this.Title = "UTS Helps";	//Title of the mainframe
 			this.BackgroundColor = App.utsBackgroundColor;
-
+			NavigationPage.SetBackButtonTitle (this, "Back");
 		}
 
 		private ContentPage GetDefaultPage(string title, string text = "")
