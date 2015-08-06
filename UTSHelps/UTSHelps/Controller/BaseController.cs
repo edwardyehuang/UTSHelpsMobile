@@ -23,7 +23,8 @@ namespace UTSHelps
 
 		public virtual void UpdateData()
 		{
-			
+
+
 		}
 	}
 }
