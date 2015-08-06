@@ -7,7 +7,7 @@ namespace UTSHelps.Controller
 	public class MySelfController : BaseController
 	{
 		protected MySelf mySelf = new MySelf();
-		protected MySelfInfoController mySelfInfo = new MySelfInfoController();
+		protected MySelfInfoController mySelfInfo;
 
 		public MySelfController () : base (new MySelfPage())
 		{
@@ -29,7 +29,8 @@ namespace UTSHelps.Controller
 
 		public void ShowSelfInfoPage()
 		{
-			View.Navigation.PushAsync (mySelfInfo.View);
+			mySelfInfo = new MySelfInfoController();
+		    View.Navigation.PushAsync (mySelfInfo.View);
 		}
 	}
 }
