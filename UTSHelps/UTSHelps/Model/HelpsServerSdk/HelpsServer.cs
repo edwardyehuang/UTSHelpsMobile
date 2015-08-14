@@ -7,7 +7,7 @@ namespace UTSHelps.Server
 	{
 		protected HttpClient client = new HttpClient();
 
-		public HelpsServer (string baseAddress)
+		public HelpsServer (Uri baseAddress)
 		{
 			client.BaseAddress = baseAddress;
 		}
