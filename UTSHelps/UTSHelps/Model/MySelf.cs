@@ -2,7 +2,7 @@
 
 namespace UTSHelps.Model
 {
-	public class MySelf
+	public class MySelf : HelpsBase
 	{
 		public string Name {get; set;}
 		public string PreferredFirstName { get; set; }

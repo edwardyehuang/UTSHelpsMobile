@@ -2,7 +2,7 @@
 
 namespace UTSHelps.Model
 {
-	public class Session
+	public class Session : HelpsBase
 	{
 		public string Name { get; set; }
 		public DateTime StartTime { get; set; }

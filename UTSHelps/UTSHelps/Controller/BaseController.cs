@@ -2,28 +2,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using UTSHelps.Model;
 
-namespace UTSHelps
+namespace UTSHelps.Controller
 {
 	public class BaseController
 	{
 		public Page View { get; set; }
+		public HelpsBase Model { get; set; }
 
-		public BaseController (Page view)
+		public BaseController (Page view, HelpsBase model = null)
 		{
 			View = view;
+			Model = model;
 			RegViewEvents ();
 			UpdateData ();
 		}
 
 		public virtual void RegViewEvents()
 		{
-			View.Appearing += (object sender, EventArgs e) => UpdateData ();
+			try
+			{
+				View.Appearing += (object sender, EventArgs e) => UpdateData ();
+			}
+			catch(NullReferenceException) {
+				
+			}
+		}
+
+		public virtual void RegModalEvents()
+		{
+			if (Model == null)
+				return;
+
+			Model.OnDataUpdated = UpdateView;
 		}
 
 		public virtual void UpdateData()
 		{
 
+
+		}
+
+		public virtual void UpdateView()
+		{
 
 		}
 	}

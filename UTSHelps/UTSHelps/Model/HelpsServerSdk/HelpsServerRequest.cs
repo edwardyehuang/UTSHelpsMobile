@@ -5,18 +5,21 @@ using System.Net.Http;
 
 namespace UTSHelps.Server
 {
-	public class HelpsServerRequest
+	public class HelpsServerRequest : HttpRequestMessage
 	{
-		
+		public string RequestTag { get; set; } = "default_request";
 
 		public HelpsServerRequest ()
 		{
 			
 		}
 
-		public static HelpsServerRequest Request(string url, string httpMethod, string tag = "default_request")
+		public static HelpsServerRequest Request(string url, HttpMethod httpMethod, string tag = "default_request")
 		{
-			return new HelpsServerRequest ();
+			return new HelpsServerRequest () {
+
+				Method = httpMethod,
+			};
 		}
 	}
 }

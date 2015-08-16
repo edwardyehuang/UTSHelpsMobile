@@ -2,7 +2,7 @@
 
 namespace UTSHelps.Model
 {
-	public class Booking
+	public class Booking : HelpsBase
 	{
 		public Session BookedSession { get; set; }
 		public BookingStatuses BookingStatus { get; set; }

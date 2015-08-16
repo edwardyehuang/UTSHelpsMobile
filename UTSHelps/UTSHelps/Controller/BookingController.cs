@@ -1,7 +1,7 @@
 ﻿using System;
 using UTSHelps.View;
 
-namespace UTSHelps
+namespace UTSHelps.Controller
 {
 	public class BookingController : BaseController
 	{
