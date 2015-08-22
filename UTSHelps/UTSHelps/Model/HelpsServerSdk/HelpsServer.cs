@@ -13,12 +13,14 @@ namespace UTSHelps.Server
 
 		public HelpsClient Client { get; set; }
 
+
+
 		public HelpsServer ()
 		{
 			 
 		}
 
-		public async void SendRequest(HelpsServerRequest request)
+		public async void SendRequest(HttpRequestMessage request)
 		{
 			using (HttpClient client = new HttpClient ()) {
 
@@ -28,16 +30,7 @@ namespace UTSHelps.Server
 				HttpResponseMessage httpRespose = await client.SendAsync (request);
 
 				if (Client != null) {
-					Client.DidReceiveResponse (new HelpsServerResponse {
-						Content = httpRespose.Content,
-						Headers = httpRespose.Headers,
-						IsSuccessStatusCode = httpRespose.IsSuccessStatusCode,
-						ReasonPhrase = httpRespose.ReasonPhrase,
-						RequestMessage = httpRespose.RequestMessage,
-						StatusCode = httpRespose.StatusCode,
-						Version = httpRespose.Version,
-						RequestTag = request.RequestTag,
-					});
+					await Client.DidReceiveResponse (httpRespose);
 				}
 			}
 		}

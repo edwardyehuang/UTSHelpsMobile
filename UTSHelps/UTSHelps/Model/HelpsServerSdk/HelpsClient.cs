@@ -6,7 +6,7 @@ namespace UTSHelps.Server
 {
 	public interface HelpsClient
 	{
-		void DidReceiveResponse (HelpsServerResponse response);
+		Task DidReceiveResponse (HttpResponseMessage response);
 	}
 }
 

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net;
 using UTSHelps.Server;
 using Xamarin;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace UTSHelps.Model
 {
@@ -27,10 +31,13 @@ namespace UTSHelps.Model
 			Debug.WriteLine ("Start update data");
 		}
 
-		public virtual void DidReceiveResponse (HelpsServerResponse response)
+		public virtual async Task DidReceiveResponse (HttpResponseMessage response)
 		{
-			Debug.WriteLine (response.Content.ToString ());
+			string resultStr = await response.Content.ReadAsStringAsync ();
+			Debug.WriteLine (resultStr);
 		}
+
+
 
 
 	}
