@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -27,11 +28,18 @@ namespace UTSHelps.Server
 				client.BaseAddress = new Uri (BaseAddress);
 				request.Headers.Add ("AppKey", AppKey);
 
-				HttpResponseMessage httpRespose = await client.SendAsync (request);
+				try
+				{
+					HttpResponseMessage httpRespose = await client.SendAsync (request);
 
-				if (Client != null) {
-					await Client.DidReceiveResponse (httpRespose);
+					if (Client != null) {
+						await Client.DidReceiveResponse (httpRespose);
+					}
 				}
+				catch(WebException e) {
+
+				}
+
 			}
 		}
 
