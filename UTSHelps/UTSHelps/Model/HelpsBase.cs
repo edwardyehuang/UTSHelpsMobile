@@ -17,8 +17,8 @@ namespace UTSHelps.Model
 
 		protected HelpsServer server = new HelpsServer
 		{
-			AppKey = "397044815",
-			BaseAddress = "http://utshelp.cloudapp.net",
+			AppKey = "123456",
+			BaseAddress = "http://grp15sdp.cloudapp.net",
 		};
 
 		public HelpsBase ()
@@ -34,12 +34,13 @@ namespace UTSHelps.Model
 		public virtual async Task DidReceiveResponse (HttpResponseMessage response)
 		{
 			string resultStr = await response.Content.ReadAsStringAsync ();
-			Debug.WriteLine (resultStr);
+		    DidReadResponse (resultStr);
 		}
 
-
-
-
+		public virtual void DidReadResponse (string stringRead)
+		{
+		     Debug.WriteLine (stringRead);
+		}
 	}
 }
 

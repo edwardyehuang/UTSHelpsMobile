@@ -25,20 +25,7 @@ namespace UTSHelps.Model
 			server.SendRequest (new HttpRequestMessage(HttpMethod.Get, "api/workshop/workshopSets/true"));
 		}
 
-		public override async Task DidReceiveResponse (HttpResponseMessage response)
-		{
-			string resultStr = await response.Content.ReadAsStringAsync ();
-			Debug.WriteLine (resultStr);
 
-			JsonReader reader = new JsonTextReader (new StringReader (resultStr));
-			while (reader.Read())
-			{
-				if (reader.Value != null)
-					Debug.WriteLine("Token: {0}, Value: {1}", reader.TokenType, reader.Value);
-				else
-					Debug.WriteLine("Token: {0}", reader.TokenType);
-				}
-		}
 	}
 }
 

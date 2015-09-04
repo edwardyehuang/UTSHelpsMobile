@@ -40,12 +40,10 @@
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\BookingStatuses.cs" />
     <Compile Include="Controller\LatestController.cs" />
-    <Compile Include="View\SessionsPage.cs" />
     <Compile Include="View\BookingPage.cs" />
     <Compile Include="View\MySelfPage.cs" />
     <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Controller\MainFrameController.cs" />
-    <Compile Include="Controller\SessionsController.cs" />
     <Compile Include="Controller\BookingController.cs" />
     <Compile Include="Controller\MySelfController.cs" />
     <Compile Include="Model\MySelf.cs" />
@@ -58,6 +56,10 @@
     <Compile Include="Model\HelpsServerSdk\HelpsServer.cs" />
     <Compile Include="Model\HelpsBase.cs" />
     <Compile Include="Model\HelpsServerSdk\HelpsClient.cs" />
+    <Compile Include="Model\Workshop.cs" />
+    <Compile Include="Model\WorkShops.cs" />
+    <Compile Include="Controller\WorkShopsController.cs" />
+    <Compile Include="View\WorkShopsPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -97,5 +99,6 @@
     <Folder Include="Resources\Images\" />
     <Folder Include="Resources\Icons\" />
     <Folder Include="Model\HelpsServerSdk\" />
+    <Folder Include="View\UI\" />
   </ItemGroup>
 </Project>

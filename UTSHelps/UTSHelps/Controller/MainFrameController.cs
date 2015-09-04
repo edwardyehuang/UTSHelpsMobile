@@ -7,7 +7,7 @@ namespace UTSHelps.Controller
 	public class MainFrameController : BaseController
 	{
 		protected LatestController latestCtrl = new LatestController ();
-		protected SessionsController sessionsCtrl = new SessionsController();
+		protected WorkShopsController sessionsCtrl = new WorkShopsController();
 		protected BookingController bookingCtrl = new BookingController();
 		protected MySelfController mySelfCtrl = new MySelfController();
 

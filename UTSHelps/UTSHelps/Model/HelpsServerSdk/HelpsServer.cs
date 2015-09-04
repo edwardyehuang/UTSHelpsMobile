@@ -2,14 +2,14 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using System.Diagnostics;
 
 
 namespace UTSHelps.Server
 {
 	public class HelpsServer
 	{
-		public string AppKey { get; set;} = "397044815";
+		public string AppKey { get; set;} = "123456";
 		public string BaseAddress { get; set;}
 
 		public HelpsClient Client { get; set; }
@@ -18,7 +18,7 @@ namespace UTSHelps.Server
 
 		public HelpsServer ()
 		{
-			 
+			
 		}
 
 		public async void SendRequest(HttpRequestMessage request)
@@ -32,14 +32,14 @@ namespace UTSHelps.Server
 				{
 					HttpResponseMessage httpRespose = await client.SendAsync (request);
 
-					if (Client != null) {
+					if (Client != null) 
+					{
 						await Client.DidReceiveResponse (httpRespose);
 					}
 				}
 				catch(WebException e) {
-
+					Debug.WriteLine ("Send request failed :" + e.Message);
 				}
-
 			}
 		}
 
