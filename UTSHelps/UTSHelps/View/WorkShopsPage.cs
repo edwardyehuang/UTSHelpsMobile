@@ -5,12 +5,14 @@ namespace UTSHelps.View
 {
 	public class WorkShopsPage : ContentPage
 	{
-		public ListView ShopsListView { get;} = new ListView();
+		public TableView ShopsListView { get;} = new TableView();
 
 		public WorkShopsPage ()
 		{
 			Title = "WorkShop";
 			Icon = "icon_sessions";
+
+			Content = ShopsListView;
 		}
 	}
 }
