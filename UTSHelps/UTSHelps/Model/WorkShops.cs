@@ -41,7 +41,9 @@ namespace UTSHelps.Model
 				});
 			}
 
-			OnDataUpdated ();
+			if (OnDataUpdated != null) {
+				OnDataUpdated ();
+			}
 		}
 	}
 }

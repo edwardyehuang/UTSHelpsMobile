@@ -16,7 +16,9 @@ namespace UTSHelps.Controller
 			View = view;
 			Model = model;
 			RegViewEvents ();
+			RegModalEvents ();
 			UpdateData ();
+
 		}
 
 		public virtual void RegViewEvents()
