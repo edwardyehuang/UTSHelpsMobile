@@ -39,7 +39,7 @@ namespace UTSHelps.Controller
 
 				};
 
-				cell.Tapped = () => ShowSectionsInWorkshop (shop);
+//				cell.Tapped = () => ShowSectionsInWorkshop (shop);
 				section.Add (cell);
 			}
 

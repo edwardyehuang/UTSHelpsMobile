@@ -32,6 +32,8 @@ namespace UTSHelps.Server
 				{
 					HttpResponseMessage httpRespose = await client.SendAsync (request);
 
+					Debug.WriteLine("Respones received");
+
 					if (Client != null) 
 					{
 						await Client.DidReceiveResponse (httpRespose);

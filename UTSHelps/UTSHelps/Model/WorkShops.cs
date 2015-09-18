@@ -28,21 +28,28 @@ namespace UTSHelps.Model
 
 		public override void DidReadResponse (string stringRead)
 		{
-			JObject results = JObject.Parse (stringRead);
+			try
+			{
+				JObject results = JObject.Parse (stringRead);
 
-			//Get Work shop sets
-			JArray sets = (JArray)results["Results"];
+				//Get Work shop sets
+				JArray sets = (JArray)results["Results"];
 
-			foreach (JObject workShop in sets) {
+				foreach (JObject workShop in sets) {
 
-				Shops.Add (new Workshop {
-					Id = workShop ["id"].ToString(),
-					Name = workShop ["name"].ToString(),
-				});
+					Shops.Add (new Workshop {
+						Id = workShop ["id"].ToString(),
+						Name = workShop ["name"].ToString(),
+					});
+				}
+
+				if (OnDataUpdated != null) {
+					OnDataUpdated ();
+				}
 			}
+			catch (InvalidCastException e) {
 
-			if (OnDataUpdated != null) {
-				OnDataUpdated ();
+				Debug.WriteLine ("Invaild data\n " + stringRead + "\n Error Message :" + e.Message);
 			}
 		}
 	}
