@@ -34,6 +34,7 @@ namespace UTSHelps.Model
 
 				//Get Work shop sets
 				JArray sets = (JArray)results["Results"];
+				Shops.Clear();
 
 				foreach (JObject workShop in sets) {
 

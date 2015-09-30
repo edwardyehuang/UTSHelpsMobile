@@ -3,6 +3,7 @@ using UTSHelps.View;
 using UTSHelps.Model;
 using Xamarin.Forms;
 using System.Collections;
+using System.Diagnostics;
 
 namespace UTSHelps.Controller
 {
@@ -39,7 +40,7 @@ namespace UTSHelps.Controller
 
 				};
 
-//				cell.Tapped = () => ShowSectionsInWorkshop (shop);
+				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInWorkshop (shop);
 				section.Add (cell);
 			}
 
@@ -48,7 +49,13 @@ namespace UTSHelps.Controller
 
 		public void ShowSectionsInWorkshop(Workshop workShop)
 		{
-			
+			if (workShop.WorkShopSessions == null) {
+				workShop.WorkShopSessions = new Sessions () {
+					RelatedWorkshop = workShop,
+				};
+			}
+
+			View.Navigation.PushAsync(new SessionsController(workShop.WorkShopSessions).View);
 		}
 	}
 }
