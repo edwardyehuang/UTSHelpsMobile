@@ -37,7 +37,7 @@ namespace UTSHelps.Controller
 				TextCell cell = new TextCell {
 					Text = shop.Id + " " + shop.Name,
 					Detail = shop.Archived,
-
+					TextColor = App.textColor, // text was blue in Android
 				};
 
 				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInWorkshop (shop);

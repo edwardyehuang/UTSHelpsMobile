@@ -13,8 +13,8 @@ namespace UTSHelps.View
 			Text = "Default User",
 			ImageSource = "icon_self",
 			Detail = "Default user info",
+			TextColor = App.textColor, // text was blue in Android
 
-			
 		};
 
 		public MySelfPage ()

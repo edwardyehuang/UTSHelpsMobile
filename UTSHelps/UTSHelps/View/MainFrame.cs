@@ -9,7 +9,7 @@ namespace UTSHelps.View
 		public MainFrame ()
 		{
 			this.Title = "UTS Helps";	//Title of the mainframe
-			this.BackgroundColor = App.utsBackgroundColor;
+//			this.BackgroundColor = App.utsBackgroundColor;
 			NavigationPage.SetBackButtonTitle (this, "Back");
 		}
 
