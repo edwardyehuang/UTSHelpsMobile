@@ -19,7 +19,7 @@ namespace UTSHelps.View
 
 		public MySelfPage ()
 		{
-			Title = "MySelf";
+			Title = "Profile";
 			Icon = "icon_self";
 			NavigationPage.SetBackButtonTitle (this, "Back");
 
