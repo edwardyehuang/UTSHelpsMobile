@@ -24,6 +24,16 @@ namespace UTSHelps.Model
 		{
 			base.UpdateData ();
 			server.SendRequest (new HttpRequestMessage(HttpMethod.Get, "api/workshop/workshopSets/true"));
+
+			// test UI
+//			Shops.Add (new Workshop {
+//				Id = "1",
+//				Name = "Test name",
+//			});
+//
+//			if (OnDataUpdated != null) {
+//				OnDataUpdated ();
+//			}
 		}
 
 		public override void DidReadResponse (string stringRead)
