@@ -18,7 +18,7 @@ namespace UTSHelps.Model
 		protected HelpsServer server = new HelpsServer
 		{
 			AppKey = "123456",
-			BaseAddress = "http://grp15sdp.danward.net.au:8080/",
+			BaseAddress = "http://grp15sdp.danward.me:8080/",
 		};
 
 		public HelpsBase ()
