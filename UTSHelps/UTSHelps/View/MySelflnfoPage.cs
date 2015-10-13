@@ -7,7 +7,7 @@ namespace UTSHelps.View
 	{
 		public MySelflnfoPage ()
 		{
-			Title = "Myself Infomation";
+			Title = "Profiles";
 		}
 	}
 }
