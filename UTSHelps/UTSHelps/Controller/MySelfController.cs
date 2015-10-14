@@ -18,13 +18,15 @@ namespace UTSHelps.Controller
 		{
 			base.UpdateData ();
 
+			// fill profile page
+//			((MySelfPage)View).nameEntry.Text = mySelf.Name;
 		}
 
 		public override void RegViewEvents ()
 		{
 			base.RegViewEvents ();
 
-			((MySelfPage)View).AvatarCell.Tapped += (object sender, EventArgs e) => ShowSelfInfoPage ();
+//			((MySelfPage)View).AvatarCell.Tapped += (object sender, EventArgs e) => ShowSelfInfoPage ();
 		}
 
 		public void ShowSelfInfoPage()
