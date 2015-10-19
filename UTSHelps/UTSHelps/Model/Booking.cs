@@ -4,12 +4,14 @@ namespace UTSHelps.Model
 {
 	public class Booking : HelpsBase
 	{
-		public Session BookedSession { get; set; }
+		public Workshop BookedWorkshop { get; set; }
 		public BookingStatuses BookingStatus { get; set; }
 
 		public Booking ()
 		{
 		}
+
+	
 	}
 }
 

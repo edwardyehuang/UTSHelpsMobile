@@ -41,6 +41,7 @@ namespace UTSHelps.Model
 					Shops.Add (new Workshop {
 						Id = workShop ["id"].ToString(),
 						Name = workShop ["name"].ToString(),
+						HelpsData = this.HelpsData,
 					});
 				}
 
@@ -49,6 +50,10 @@ namespace UTSHelps.Model
 				}
 			}
 			catch (InvalidCastException e) {
+
+				Debug.WriteLine ("Invaild data\n " + stringRead + "\n Error Message :" + e.Message);
+			}
+			catch (JsonException e) {
 
 				Debug.WriteLine ("Invaild data\n " + stringRead + "\n Error Message :" + e.Message);
 			}

@@ -34,7 +34,7 @@ namespace UTSHelps.View
 			VerticalOptions = LayoutOptions.FillAndExpand,
 		};
 			
-		protected Label titleLabel = new Label
+		public Label TitleLabel { protected set; get; } = new Label
 		{
 			Text = "UTS:Helps",
 			FontSize = 45,
@@ -76,7 +76,7 @@ namespace UTSHelps.View
 				BackgroundColor = App.utsBackgroundColor,
 				Content = new StackLayout {
 					Spacing = 20,
-					Children = { titleLabel, UsernameEntry, PasswordEntry, signButtons },
+					Children = { TitleLabel, UsernameEntry, PasswordEntry, signButtons },
 					VerticalOptions = LayoutOptions.FillAndExpand,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 				},
@@ -86,10 +86,11 @@ namespace UTSHelps.View
 			};
 				
 			mainGrid.Children.Add (new WebView{
-				Source = new UrlWebViewSource
+				Source = new HtmlWebViewSource
 				{
-					Url = "http://38.media.tumblr.com/a123606e52db443841a6bb982d93febe/tumblr_n7a40sXB7P1r2geqjo1_r1_500.gif",
+					Html = @"<iframe width=""100%"" height=""100%"" src=""https://www.youtube.com/embed/oxKkJfNSq9Y?autoplay=1"" frameborder=""0"" allowfullscreen></iframe>",
 				},
+
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			}, 0, 1, 0, 2);

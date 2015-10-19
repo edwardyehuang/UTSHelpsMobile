@@ -14,6 +14,7 @@ namespace UTSHelps.Server
 
 		public HelpsClient Client { get; set; }
 
+		public delegate void ReceivedResponseEvent(string resultsRead);
 
 
 		public HelpsServer ()
@@ -21,7 +22,7 @@ namespace UTSHelps.Server
 			
 		}
 
-		public async void SendRequest(HttpRequestMessage request)
+		public async void SendRequest(HttpRequestMessage request, ReceivedResponseEvent callback = null)
 		{
 			using (HttpClient client = new HttpClient ()) {
 
@@ -34,7 +35,12 @@ namespace UTSHelps.Server
 
 					Debug.WriteLine("Respones received");
 
-					if (Client != null) 
+					if (callback != null)
+					{
+						string resultStr = await httpRespose.Content.ReadAsStringAsync ();
+						callback(resultStr);
+					}
+					else if (Client != null) 
 					{
 						await Client.DidReceiveResponse (httpRespose);
 					}

@@ -26,6 +26,7 @@ namespace UTSHelps.Model
 			base.UpdateData ();
 			server.SendRequest (new HttpRequestMessage(HttpMethod.Get, 
 				"api/workshop/search?workshopSetId=" + RelatedWorkshop.Id));
+			Debug.WriteLine ("Request the sessions from workshop ID : " + RelatedWorkshop.Id);
 		}
 
 		public override void DidReadResponse (string stringRead)

@@ -1,15 +1,13 @@
 ﻿using System;
 using Xamarin.Forms;
 using UTSHelps.View;
+using UTSHelps.Model;
 
 namespace UTSHelps.Controller
 {
 	public class MainFrameController : BaseController
 	{
-		protected LatestController latestCtrl = new LatestController ();
-		protected WorkShopsController sessionsCtrl = new WorkShopsController();
-		protected BookingController bookingCtrl = new BookingController();
-		protected MySelfController mySelfCtrl = new MySelfController();
+		protected MainData mainData = new MainData();
 
 		protected LoginController loginCtrl = new LoginController();
 
@@ -18,12 +16,16 @@ namespace UTSHelps.Controller
 		public MainFrameController () : base(new MainFrame())
 		{
 
+			loginCtrl.SuccessSignInEvent = (string userName) => {
+
+				mainData.SelfData.RegStudent(userName);
+				//mainData.SelfData.Info.CreatorId = mainData.SelfData.Info.StudentId = userName;
+				BuildChildViews ();
+			};
+
 			if (!bLogged) {
 				ShowLoginPage ();
 			}
-
-			BuildChildViews ();
-
 		}
 
 		protected void ShowLoginPage()
@@ -34,10 +36,10 @@ namespace UTSHelps.Controller
 		protected void BuildChildViews()
 		{
 			TabbedPage tab = (TabbedPage)View;
-			tab.Children.Add (latestCtrl.View);
-			tab.Children.Add (sessionsCtrl.View);
-			tab.Children.Add (bookingCtrl.View);
-			tab.Children.Add (mySelfCtrl.View);
+			tab.Children.Add ((new LatestController ()).View);
+			tab.Children.Add ((new WorkShopsController(mainData)).View);
+			tab.Children.Add ((new BookingController(mainData)).View);
+			tab.Children.Add ((new MySelfController(mainData)).View);
 		}
 	}
 }

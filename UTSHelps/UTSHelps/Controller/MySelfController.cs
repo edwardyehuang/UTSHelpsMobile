@@ -6,17 +6,18 @@ namespace UTSHelps.Controller
 {
 	public class MySelfController : BaseController
 	{
-		protected MySelf mySelf = new MySelf();
 		protected MySelfInfoController mySelfInfo;
 
-		public MySelfController () : base (new MySelfPage())
+		public MySelfController (MainData mainData) : base (new MySelfPage(), mainData.SelfData)
 		{
-		
+			
 		}
 
 		public override void UpdateData ()
 		{
 			base.UpdateData ();
+
+			var mySelf = (MySelf)Model;
 
 		}
 
