@@ -16,12 +16,14 @@ namespace UTSHelps.Controller
 		public MainFrameController () : base(new MainFrame())
 		{
 
-			loginCtrl.SuccessSignInEvent = (string userName) => {
-
-				mainData.SelfData.RegStudent(userName);
-				//mainData.SelfData.Info.CreatorId = mainData.SelfData.Info.StudentId = userName;
-				BuildChildViews ();
-			};
+			loginCtrl.SuccessSignInEvent = (string userName) => mainData.SelfData.RegStudent (userName, IsSuccess => {
+				if (IsSuccess)
+					BuildChildViews ();
+				else {
+					loginCtrl.ReSignin ();
+					ShowLoginPage ();
+				}
+			});
 
 			if (!bLogged) {
 				ShowLoginPage ();
@@ -37,8 +39,8 @@ namespace UTSHelps.Controller
 		{
 			TabbedPage tab = (TabbedPage)View;
 			tab.Children.Add ((new LatestController ()).View);
-			tab.Children.Add ((new WorkShopsController(mainData)).View);
-			tab.Children.Add ((new BookingController(mainData)).View);
+			tab.Children.Add ((new WorkShopsSetsController(mainData)).View);
+			tab.Children.Add ((new BookingsController(mainData)).View);
 			tab.Children.Add ((new MySelfController(mainData)).View);
 		}
 	}

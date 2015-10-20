@@ -11,38 +11,54 @@ using Newtonsoft.Json.Linq;
 
 namespace UTSHelps.Model
 {
-	public class WorkShops : HelpsBase
+	public class Workshops : HelpsBase
 	{
-		public List <Workshop> Shops { get; set; } = new List<Workshop>();
+		public List <Workshop> workshops  { get; set; } = new List<Workshop>();
+		public WorkshopSet RelatedWorkshopSet { get; set; }
 
-		public WorkShops () : base()
+		public Workshops () : base()
 		{
-
+			
 		}
 
 		public override void UpdateData ()
 		{
 			base.UpdateData ();
-			server.SendRequest (new HttpRequestMessage(HttpMethod.Get, "api/workshop/workshopSets/true"));
+
+			if (workshops.Count <= 0) {
+				server.SendRequest (new HttpRequestMessage (HttpMethod.Get, 
+					"api/workshop/search?workshopSetId=" + RelatedWorkshopSet.Id));
+				Debug.WriteLine ("Request the sessions from workshop ID : " + RelatedWorkshopSet.Id);
+			}
+			else if (OnDataUpdated != null) {
+				OnDataUpdated ();
+			}
 		}
 
 		public override void DidReadResponse (string stringRead)
 		{
+			Debug.WriteLine (stringRead);
+
 			try
 			{
 				JObject results = JObject.Parse (stringRead);
 
 				//Get Work shop sets
 				JArray sets = (JArray)results["Results"];
-				Shops.Clear();
+				workshops.Clear();
 
-				foreach (JObject workShop in sets) {
+				foreach (JObject sessionObject in sets) {
+				 
+					Workshop workshop = JsonConvert.DeserializeObject<Workshop>(sessionObject.ToString());
+					workshop.HelpsData = HelpsData;
+					workshop.ReleatedSets = this;
 
-					Shops.Add (new Workshop {
-						Id = workShop ["id"].ToString(),
-						Name = workShop ["name"].ToString(),
-						HelpsData = this.HelpsData,
-					});
+					if (HelpsData.BookingsData.IsWorkshopInBooking(workshop.WorkshopId))
+					{
+						workshop.BookingStatus = BookingStatuses.Booked;
+					}
+
+					workshops.Add(workshop);
 				}
 
 				if (OnDataUpdated != null) {
@@ -53,11 +69,11 @@ namespace UTSHelps.Model
 
 				Debug.WriteLine ("Invaild data\n " + stringRead + "\n Error Message :" + e.Message);
 			}
-			catch (JsonException e) {
-
-				Debug.WriteLine ("Invaild data\n " + stringRead + "\n Error Message :" + e.Message);
-			}
 		}
+
+
+
+
 	}
 }
 

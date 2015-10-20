@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
@@ -50,6 +51,40 @@ namespace UTSHelps.Server
 				}
 			}
 		}
+
+		public async void SendJsonRequest(HttpRequestMessage request, ReceivedResponseEvent callback = null)
+		{
+			using (HttpClient client = new HttpClient ()) {
+
+				client.BaseAddress = new Uri (BaseAddress);
+				request.Headers.Add ("AppKey", AppKey);
+				client.DefaultRequestHeaders
+					.Accept
+					.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+				try
+				{
+					HttpResponseMessage httpRespose = await client.SendAsync (request);
+
+					Debug.WriteLine("Respones received");
+
+					if (callback != null)
+					{
+						string resultStr = await httpRespose.Content.ReadAsStringAsync ();
+						callback(resultStr);
+					}
+					else if (Client != null) 
+					{
+						await Client.DidReceiveResponse (httpRespose);
+					}
+				}
+				catch(WebException e) {
+					Debug.WriteLine ("Send request failed :" + e.Message);
+				}
+			}
+
+		}
+
 
 		
 

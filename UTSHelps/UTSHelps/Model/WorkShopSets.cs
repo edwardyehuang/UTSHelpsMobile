@@ -11,49 +11,55 @@ using Newtonsoft.Json.Linq;
 
 namespace UTSHelps.Model
 {
-	public class Sessions : HelpsBase
+	public class WorkShopSets : HelpsBase
 	{
-		protected List <Session> sessions = new List<Session>();
-		public Workshop RelatedWorkshop { get; set; }
+		public List <WorkshopSet> Sets { get; set; } = new List<WorkshopSet>();
 
-		public Sessions () : base()
+		public WorkShopSets () : base()
 		{
-			
+
 		}
 
 		public override void UpdateData ()
 		{
 			base.UpdateData ();
-			server.SendRequest (new HttpRequestMessage(HttpMethod.Get, 
-				"api/workshop/search?workshopSetId=" + RelatedWorkshop.Id));
-			Debug.WriteLine ("Request the sessions from workshop ID : " + RelatedWorkshop.Id);
+
+			if (Sets.Count <= 0) {
+				server.SendRequest (new HttpRequestMessage (HttpMethod.Get, "api/workshop/workshopSets/true"));
+			}
+			else if (OnDataUpdated != null) {
+				OnDataUpdated ();
+			}
 		}
 
 		public override void DidReadResponse (string stringRead)
 		{
-			Debug.WriteLine (stringRead);
-
 			try
 			{
 				JObject results = JObject.Parse (stringRead);
 
-				/*//Get Work shop sets
+				//Get Work shop sets
 				JArray sets = (JArray)results["Results"];
-				sessions.Clear();
+				Sets.Clear();
 
-				foreach (JObject workShop in sets) {
-
-					sessions.Add (new Session {
-						Id = workShop ["id"].ToString(),
-						Name = workShop ["name"].ToString(),
+				foreach (JObject workShopObject in sets) {
+					
+					Sets.Add (new WorkshopSet {
+						Id = workShopObject ["id"].ToString(),
+						Name = workShopObject ["name"].ToString(),
+						HelpsData = this.HelpsData,
 					});
 				}
 
 				if (OnDataUpdated != null) {
 					OnDataUpdated ();
-				}*/
+				}
 			}
 			catch (InvalidCastException e) {
+
+				Debug.WriteLine ("Invaild data\n " + stringRead + "\n Error Message :" + e.Message);
+			}
+			catch (JsonException e) {
 
 				Debug.WriteLine ("Invaild data\n " + stringRead + "\n Error Message :" + e.Message);
 			}

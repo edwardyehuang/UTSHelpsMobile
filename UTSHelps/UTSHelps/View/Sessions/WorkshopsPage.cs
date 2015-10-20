@@ -3,13 +3,13 @@ using Xamarin.Forms;
 
 namespace UTSHelps.View
 {
-	public class SessionsPage : ContentPage
+	public class WorkshopsPage : ContentPage
 	{
 		public TableView SessionsListView { get;} = new TableView();
 
-		public SessionsPage ()
+		public WorkshopsPage ()
 		{
-			Title = "Session";
+			Title = "Loading";
 			Icon = "icon_sessions";
 
 			Content = SessionsListView;

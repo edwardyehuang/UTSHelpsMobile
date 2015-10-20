@@ -50,6 +50,11 @@ namespace UTSHelps.Controller
 		{
 
 		}
+
+		public virtual void OnPressedSearch()
+		{
+			View.Navigation.PushModalAsync ((new SearchController (){HelpsData = Model.HelpsData, parentView = View}).View);
+		}
 	}
 }
 

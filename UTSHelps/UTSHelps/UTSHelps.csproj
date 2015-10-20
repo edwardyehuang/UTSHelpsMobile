@@ -34,17 +34,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\MainFrame.cs" />
     <Compile Include="View\LatestPage.cs" />
-    <Compile Include="Model\Sessions.cs" />
-    <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Bookings.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\BookingStatuses.cs" />
     <Compile Include="Controller\LatestController.cs" />
-    <Compile Include="View\BookingPage.cs" />
     <Compile Include="View\MySelfPage.cs" />
     <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Controller\MainFrameController.cs" />
-    <Compile Include="Controller\BookingController.cs" />
     <Compile Include="Controller\MySelfController.cs" />
     <Compile Include="Model\MySelf.cs" />
     <Compile Include="Model\Genders.cs" />
@@ -56,15 +52,23 @@
     <Compile Include="Model\HelpsServerSdk\HelpsServer.cs" />
     <Compile Include="Model\HelpsBase.cs" />
     <Compile Include="Model\HelpsServerSdk\HelpsClient.cs" />
-    <Compile Include="Model\Workshop.cs" />
-    <Compile Include="Model\WorkShops.cs" />
-    <Compile Include="Controller\WorkShopsController.cs" />
-    <Compile Include="View\WorkShopsPage.cs" />
-    <Compile Include="Controller\SessionsController.cs" />
-    <Compile Include="View\Sessions\SessionsPage.cs" />
     <Compile Include="View\InfoCell.cs" />
     <Compile Include="Model\MainData.cs" />
     <Compile Include="Model\SelfInfo.cs" />
+    <Compile Include="Controller\BookingsController.cs" />
+    <Compile Include="View\BookingsPage.cs" />
+    <Compile Include="Controller\WorkShopsSetsController.cs" />
+    <Compile Include="Model\WorkShopSets.cs" />
+    <Compile Include="Model\WorkshopSet.cs" />
+    <Compile Include="View\WorkShopSetsPage.cs" />
+    <Compile Include="Model\Workshops.cs" />
+    <Compile Include="Controller\WorkshopsController.cs" />
+    <Compile Include="View\Sessions\WorkshopsPage.cs" />
+    <Compile Include="Model\Workshop.cs" />
+    <Compile Include="Controller\WorkshopController.cs" />
+    <Compile Include="View\Sessions\WorkshopPage.cs" />
+    <Compile Include="View\SearchView.cs" />
+    <Compile Include="Controller\SearchController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

@@ -21,6 +21,12 @@ namespace UTSHelps.Controller
 			
 		}
 
+		public void ReSignin()
+		{
+			((LoginPage)View).SignInButton.IsEnabled = true;
+			((LoginPage)View).TitleLabel.Text = "UTS:Helps";
+		}
+
 		public void OnClickedOfflineButton()
 		{
 			View.Navigation.PopModalAsync (true);

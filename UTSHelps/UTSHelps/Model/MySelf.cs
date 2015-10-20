@@ -15,6 +15,7 @@ namespace UTSHelps.Model
 	public class MySelf : HelpsBase
 	{
 		public SelfInfo Info { get ; set; }= new SelfInfo();
+		public delegate void RegStudentDelegate(bool IsSuccess);
 
 
 		public override void UpdateData ()
@@ -29,16 +30,33 @@ namespace UTSHelps.Model
 			string jsonStr = JsonConvert.SerializeObject (Info);
 		}
 
-		public void RegStudent(string studentId)
+		public void RegStudent(string studentId, RegStudentDelegate callback)
 		{
-			Info.StudentId = studentId;
-
+			Info.CreatorId = Info.StudentId = studentId;
 
 			string jsonStr = JsonConvert.SerializeObject (Info);
 
-			server.SendRequest (new HttpRequestMessage (HttpMethod.Post, "api/student/register"){
+			var request = new HttpRequestMessage (HttpMethod.Post, "api/student/register") {
 
-			//	Content = new StringContent(content.ToString()),
+				Content = new StringContent (jsonStr, Encoding.UTF8, "application/json"),
+			};
+
+			server.SendJsonRequest (request, (string resultsRead) => {
+
+
+				Debug.WriteLine("Reg response : " + resultsRead);
+				JObject results = JObject.Parse (resultsRead);
+
+				Debug.WriteLine(results["IsSuccess"].ToString());
+
+				if (results["IsSuccess"].ToString().Equals("True"))
+				{
+					callback(true);
+				}
+				else
+				{
+					callback(false);
+				}
 			});
 		}
 

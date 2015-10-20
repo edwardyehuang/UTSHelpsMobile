@@ -113,6 +113,9 @@
     <BundleResource Include="Resources\icon_self.png" />
     <BundleResource Include="Resources\icon_self%402x.png" />
     <BundleResource Include="Resources\icon_self%403x.png" />
+    <BundleResource Include="Resources\ic_search.png" />
+    <BundleResource Include="Resources\ic_search%402x.png" />
+    <BundleResource Include="Resources\ic_search%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

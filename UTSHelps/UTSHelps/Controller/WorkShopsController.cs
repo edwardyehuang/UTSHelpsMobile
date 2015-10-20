@@ -7,53 +7,53 @@ using System.Diagnostics;
 
 namespace UTSHelps.Controller
 {
-	public class WorkShopsController : BaseController
+	public class WorkshopsController : BaseController
 	{
-		public WorkShopsController (MainData mainData) : base(new WorkShopsPage(), mainData.WorkShopsData)
+		public WorkshopsController (Workshops sessions) : base(new WorkshopsPage(), sessions)
 		{
-
+			
 		}
 
 		public override void UpdateData ()
 		{
 			base.UpdateData ();
 
-			WorkShops shops = (WorkShops)Model;
+			Workshops sessions = (Workshops)Model;
 
-			shops.UpdateData ();
+			sessions.UpdateData ();
 		}
 
 		public override void UpdateView ()
 		{
 			base.UpdateView ();
 
-			WorkShops shops = (WorkShops)Model;
-			WorkShopsPage page = (WorkShopsPage)View;
+			Workshops sessions = (Workshops)Model;
+			WorkshopsPage page = (WorkshopsPage)View;
+
+			page.Title = sessions.RelatedWorkshopSet.Name;
 
 			TableSection section = new TableSection ();
 
-			foreach (Workshop shop in shops.Shops) {
+			foreach (Workshop session in sessions.workshops) {
 
 				TextCell cell = new TextCell {
-					Text = shop.Id + " " + shop.Name,
-					Detail = shop.Archived,
-
+					Text = session.WorkshopId + " " + session.topic,
 				};
 
 				var cellAction = new MenuItem ();
 
-				if (shop.BookingStatus == BookingStatuses.Booked) {
+				if (session.BookingStatus == BookingStatuses.Booked) {
 
 					cellAction.Text = "Cancel";
 					cellAction.IsDestructive = false;
-					cellAction.Clicked += (sender, e) => CancelWorkShop (shop);
+					cellAction.Clicked += (sender, e) => CancelWorkShop (session);
 
-				} else if (shop.BookingStatus == BookingStatuses.NotBooked) {
+				} else if (session.BookingStatus == BookingStatuses.NotBooked) {
 
 					cellAction.Text = "Book";
 					cellAction.IsDestructive = false;
-					cellAction.Clicked += (sender, e) => BookWorkShop (shop);
-				} else if (shop.BookingStatus == BookingStatuses.Booking) {
+					cellAction.Clicked += (sender, e) => BookWorkShop (session);
+				} else if (session.BookingStatus == BookingStatuses.Booking) {
 
 					cellAction.Text = "Booking";
 					cellAction.IsDestructive = false;
@@ -65,37 +65,30 @@ namespace UTSHelps.Controller
 
 				cell.ContextActions.Add (cellAction);
 
-				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInWorkshop (shop);
+				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInSessions (session);
 				section.Add (cell);
 			}
 
-			(page.ShopsListView.Root = new TableRoot ()).Add (section);
+			(page.SessionsListView.Root = new TableRoot ()).Add (section);
 		}
 
-		public void ShowSectionsInWorkshop(Workshop workShop)
+		public void ShowSectionsInSessions(Workshop session)
 		{
-			if (workShop.WorkShopSessions == null) {
-				workShop.WorkShopSessions = new Sessions () {
-					RelatedWorkshop = workShop,
-				};
-			}
-
-			View.Navigation.PushAsync(new SessionsController(workShop.WorkShopSessions).View);
+			//View.Navigation.PushAsync(new SessionsController(workShop.WorkShopSessions).View);
+			View.Navigation.PushAsync(new WorkshopController(session).View);
 		}
 
 		public void BookWorkShop(Workshop shop)
 		{
-			Debug.WriteLine ("Request to book workshop : ID = " + shop.Id);	
+			Debug.WriteLine ("Request to book workshop : ID = " + shop.WorkshopId);	
 			shop.Book ();
 		}
 
 		public  void CancelWorkShop(Workshop shop)
 		{
-			Debug.WriteLine ("Request to cancel workshop : ID = " + shop.Id);	
+			Debug.WriteLine ("Request to cancel workshop : ID = " + shop.WorkshopId);	
 			shop.Cancel ();
 		}
-
-
 	}
 }
 
