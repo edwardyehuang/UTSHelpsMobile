@@ -37,6 +37,9 @@ namespace UTSHelps.View
 		{
 			BackgroundColor = App.utsBackgroundColor;
 
+			SearchEntry.BackgroundColor = Color.White;
+
+
 			var frame = new Frame {
 				HasShadow = false,
 		//		OutlineColor = Color.Silver,

@@ -46,11 +46,13 @@ namespace UTSHelps.Controller
 
 		public void ShowSelectedWorkshop(Booking booking)
 		{
+			booking.HelpsData = Model.HelpsData;
+
 			if (booking.ReleatedWorkshop == null) {
 
 				AddNewReleatedWorkshop (booking);
 			}
-
+				
 			View.Navigation.PushAsync(new WorkshopController(booking.ReleatedWorkshop).View);
 		}
 

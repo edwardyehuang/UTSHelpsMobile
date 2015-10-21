@@ -61,10 +61,7 @@ namespace UTSHelps.Model
 		{
 			BookingStatus = BookingStatuses.Booking;
 
-			if (ReleatedSets.OnDataUpdated != null) 
-			{
-				ReleatedSets.OnDataUpdated (); 
-			}
+			UpdateSetData ();
 
 			if (OnDataUpdated != null) {
 				
@@ -92,10 +89,7 @@ namespace UTSHelps.Model
 							BookingStatus = BookingStatuses.NotBooked;
 						}
 
-						if (ReleatedSets.OnDataUpdated != null) 
-						{
-							ReleatedSets.OnDataUpdated ();
-						}
+						UpdateSetData();
 
 						if (OnDataUpdated != null) {
 
@@ -121,10 +115,7 @@ namespace UTSHelps.Model
 		{
 			BookingStatus = BookingStatuses.Canceling;
 
-			if (ReleatedSets.OnDataUpdated != null) 
-			{
-				ReleatedSets.OnDataUpdated (); 
-			}
+			UpdateSetData ();
 
 			if (OnDataUpdated != null) {
 
@@ -150,10 +141,7 @@ namespace UTSHelps.Model
 							BookingStatus = BookingStatuses.Booked;
 						}
 
-						if (ReleatedSets.OnDataUpdated != null) 
-						{
-							ReleatedSets.OnDataUpdated ();
-						}
+						UpdateSetData();
 
 						if (OnDataUpdated != null) {
 
@@ -174,6 +162,15 @@ namespace UTSHelps.Model
 					}
 				});
 
+		}
+
+		public void UpdateSetData()
+		{
+			if (ReleatedSets != null) {
+				if (ReleatedSets.OnDataUpdated != null) {
+					ReleatedSets.OnDataUpdated (); 
+				}
+			}
 		}
 
 	}

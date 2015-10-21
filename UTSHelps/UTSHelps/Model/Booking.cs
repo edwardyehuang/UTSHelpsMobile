@@ -78,6 +78,7 @@ namespace UTSHelps.Model
 			w.reminder_sent = reminder_sent;
 			w.BookingStatus = BookingStatuses.Booked;
 
+			w.HelpsData = HelpsData;
 
 			return w;
 		}
