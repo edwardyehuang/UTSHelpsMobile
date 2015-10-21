@@ -10,6 +10,8 @@ namespace UTSHelps
 		Canceling,
 		Attended,
 		Missed,
+		Unavailable,
+
 	}
 }
 

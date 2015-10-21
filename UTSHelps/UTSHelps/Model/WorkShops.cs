@@ -60,11 +60,17 @@ namespace UTSHelps.Model
 					workshop.HelpsData = HelpsData;
 					workshop.ReleatedSets = this;
 
-					if (HelpsData.BookingsData.IsWorkshopInBooking(workshop.WorkshopId))
+					Booking booking = HelpsData.BookingsData.GetBooking(workshop.WorkshopId);
+
+					if (booking == null)
+					{
+						workshop.BookingStatus = BookingStatuses.NotBooked;
+					}
+					else
 					{
 						workshop.BookingStatus = BookingStatuses.Booked;
 					}
-
+						
 					workshops.Add(workshop);
 				}
 

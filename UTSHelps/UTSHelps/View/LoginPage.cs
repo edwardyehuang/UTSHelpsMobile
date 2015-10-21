@@ -66,7 +66,7 @@ namespace UTSHelps.View
 
 		public LoginPage ()
 		{
-			BackgroundColor = Color.White;
+			BackgroundColor = App.utsBackgroundColor;
 			var signButtons = new StackLayout {
 				Orientation = StackOrientation.Horizontal,
 				Children = {SignInButton, OfflineButton},
@@ -74,8 +74,8 @@ namespace UTSHelps.View
 			};
 
 			LoginFrame = new Frame {
-				HasShadow = true,
-				OutlineColor = Color.Silver,
+				HasShadow = false,
+				//OutlineColor = Color.Silver,
 				Padding = 25,
 				BackgroundColor = App.utsBackgroundColor,
 				Content = new StackLayout {
@@ -86,9 +86,10 @@ namespace UTSHelps.View
 				},
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
-				Opacity = 0.75,
+				//Opacity = 0.75,
 			};
-				
+
+			/*
 			mainGrid.Children.Add (new WebView{
 				Source = new HtmlWebViewSource
 				{
@@ -97,7 +98,7 @@ namespace UTSHelps.View
 
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
-			}, 0, 1, 0, 2);
+			}, 0, 1, 0, 2);*/
 
 			mainGrid.Children.Add (new ContentView {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -109,24 +110,24 @@ namespace UTSHelps.View
 
 			Content = mainGrid;
 
-			#if __IOS__
+		
 			UsernameEntry.Focused += (object sender, FocusEventArgs e) => MoveFrameUp();
 			PasswordEntry.Focused += (object sender, FocusEventArgs e) => MoveFrameUp();
 			UsernameEntry.Unfocused += (object sender, FocusEventArgs e) => MoveFrameDown();
 			PasswordEntry.Unfocused += (object sender, FocusEventArgs e) => MoveFrameDown();
-			#endif
+
 		}
 
 		protected void MoveFrameUp ()
 		{
 			Grid.SetRowSpan (LoginFrame, 1);
-			mainGrid.BackgroundColor = Color.Silver;
+		
 		}
 
 		protected void MoveFrameDown ()
 		{
 			Grid.SetRowSpan (LoginFrame, 2);
-			mainGrid.BackgroundColor = Color.White;
+
 		}
 
 	}

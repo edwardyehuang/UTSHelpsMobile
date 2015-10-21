@@ -42,7 +42,7 @@ namespace UTSHelps.Model
 			base.UpdateData ();
 
 			server.SendRequest (new HttpRequestMessage(HttpMethod.Get,
-				"api/workshop/booking/search?active=true&studentId=" + HelpsData.SelfData.Info.StudentId));
+				"api/workshop/booking/search?studentId=" + HelpsData.SelfData.Info.StudentId));
 		}
 
 		public override void DidReadResponse (string stringRead)
