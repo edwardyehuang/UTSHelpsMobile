@@ -37,10 +37,8 @@ namespace UTSHelps.Controller
 				TextCell cell = new TextCell {
 					Text = shop.Id + " " + shop.Name,
 					Detail = shop.Archived,
-
+					TextColor = App.textColor, 
 				};
-
-
 
 				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInWorkshopSet (shop);
 				section.Add (cell);

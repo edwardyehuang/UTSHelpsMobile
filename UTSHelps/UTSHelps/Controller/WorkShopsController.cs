@@ -38,6 +38,7 @@ namespace UTSHelps.Controller
 
 				TextCell cell = new TextCell {
 					Text = session.WorkshopId + " " + session.topic,
+					TextColor = App.textColor, 
 				};
 
 				var cellAction = new MenuItem ();
