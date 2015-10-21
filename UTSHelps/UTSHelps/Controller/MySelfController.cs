@@ -7,7 +7,6 @@ namespace UTSHelps.Controller
 {
 	public class MySelfController : BaseController
 	{
-		protected MySelf mySelf = new MySelf();
 		protected MySelfInfoController mySelfInfo;
 
 		public MySelfController (MainData mainData) : base (new MySelfPage(), mainData.SelfData)

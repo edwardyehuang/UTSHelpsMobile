@@ -10,14 +10,14 @@ namespace UTSHelps.View
 	{
 		public Entry UsernameEntry { protected set;  get; } = new Entry {
 			Placeholder = "Student Number",
-			Text = "12345678",
-			TextColor = Color.White,
+			//Text = "12345678",
+			//TextColor = Color.White,
 		};
 		public Entry PasswordEntry { protected set; get; } = new Entry {
 			Placeholder = "Password",
 			IsPassword = true,
-			Text = "test123",
-			TextColor = Color.White,
+			//Text = "test123",
+			//TextColor = Color.White,
 		};
 		public Button SignInButton { protected set; get; } = new Button
 		{
