@@ -32,6 +32,11 @@ namespace UTSHelps.Model
 			Debug.WriteLine ("Start update data");
 		}
 
+		public virtual void GetDataFromServer()
+		{
+			Debug.WriteLine ("Get data from server");
+		}
+
 		public virtual async Task DidReceiveResponse (HttpResponseMessage response)
 		{
 			string resultStr = await response.Content.ReadAsStringAsync ();
