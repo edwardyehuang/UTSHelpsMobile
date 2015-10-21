@@ -27,7 +27,7 @@ namespace UTSHelps.Model
 
 			} 
 
-			string jsonStr = JsonConvert.SerializeObject (Info);
+
 		}
 
 		public void RegStudent(string studentId, RegStudentDelegate callback)

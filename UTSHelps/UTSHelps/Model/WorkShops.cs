@@ -26,13 +26,20 @@ namespace UTSHelps.Model
 			base.UpdateData ();
 
 			if (workshops.Count <= 0) {
-				server.SendRequest (new HttpRequestMessage (HttpMethod.Get, 
-					"api/workshop/search?workshopSetId=" + RelatedWorkshopSet.Id));
-				Debug.WriteLine ("Request the sessions from workshop ID : " + RelatedWorkshopSet.Id);
+				GetDataFromServer ();
 			}
 			else if (OnDataUpdated != null) {
 				OnDataUpdated ();
 			}
+		}
+
+		public override void GetDataFromServer ()
+		{
+			base.GetDataFromServer ();
+
+			server.SendRequest (new HttpRequestMessage (HttpMethod.Get, 
+				"api/workshop/search?workshopSetId=" + RelatedWorkshopSet.Id));
+			Debug.WriteLine ("Request the workshop from workshopset ID : " + RelatedWorkshopSet.Id);
 		}
 
 		public override void DidReadResponse (string stringRead)

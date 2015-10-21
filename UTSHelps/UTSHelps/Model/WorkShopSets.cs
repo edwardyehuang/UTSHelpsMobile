@@ -25,11 +25,17 @@ namespace UTSHelps.Model
 			base.UpdateData ();
 
 			if (Sets.Count <= 0) {
-				server.SendRequest (new HttpRequestMessage (HttpMethod.Get, "api/workshop/workshopSets/true"));
+				GetDataFromServer ();
 			}
 			else if (OnDataUpdated != null) {
 				OnDataUpdated ();
 			}
+		}
+
+		public override void GetDataFromServer ()
+		{
+			base.GetDataFromServer ();
+			server.SendRequest (new HttpRequestMessage (HttpMethod.Get, "api/workshop/workshopSets/true"));
 		}
 
 		public override void DidReadResponse (string stringRead)
