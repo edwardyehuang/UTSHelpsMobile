@@ -33,6 +33,7 @@ namespace UTSHelps.Controller
 
 				TextCell cell = new TextCell {
 					Text = booking.workshopID + " " + booking.topic,
+					TextColor = App.textColor, 
 				};
 
 				//cell.Tapped += (object sender, EventArgs e) => ShowSectionsInSessions (session);
