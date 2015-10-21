@@ -66,17 +66,17 @@ namespace UTSHelps.Controller
 
 				cell.ContextActions.Add (cellAction);
 
-				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInSessions (session);
+				cell.Tapped += (object sender, EventArgs e) => ShowSelectedWorkshop (session);
 				section.Add (cell);
 			}
 
 			(page.SessionsListView.Root = new TableRoot ()).Add (section);
 		}
 
-		public void ShowSectionsInSessions(Workshop session)
+		public void ShowSelectedWorkshop(Workshop workshop)
 		{
 			//View.Navigation.PushAsync(new SessionsController(workShop.WorkShopSessions).View);
-			View.Navigation.PushAsync(new WorkshopController(session).View);
+			View.Navigation.PushAsync(new WorkshopController(workshop).View);
 		}
 
 		public void BookWorkShop(Workshop shop)

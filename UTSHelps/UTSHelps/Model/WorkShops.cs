@@ -69,6 +69,7 @@ namespace UTSHelps.Model
 					else
 					{
 						workshop.BookingStatus = BookingStatuses.Booked;
+						booking.ReleatedWorkshop = workshop;
 					}
 						
 					workshops.Add(workshop);

@@ -2,6 +2,7 @@
 using UTSHelps.View;
 using UTSHelps.Model;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace UTSHelps.Controller
 {
@@ -36,11 +37,26 @@ namespace UTSHelps.Controller
 					TextColor = App.textColor, 
 				};
 
-				//cell.Tapped += (object sender, EventArgs e) => ShowSectionsInSessions (session);
+				cell.Tapped += (object sender, EventArgs e) => ShowSelectedWorkshop (booking);
 				section.Add (cell);
 			}
 
 			(page.BookingsListView.Root = new TableRoot ()).Add (section);
+		}
+
+		public void ShowSelectedWorkshop(Booking booking)
+		{
+			if (booking.ReleatedWorkshop == null) {
+
+				AddNewReleatedWorkshop (booking);
+			}
+
+			View.Navigation.PushAsync(new WorkshopController(booking.ReleatedWorkshop).View);
+		}
+
+		public void AddNewReleatedWorkshop(Booking booking)
+		{
+			booking.ReleatedWorkshop = booking.ToWorkShop ();
 		}
 	}
 }
