@@ -13,6 +13,7 @@ namespace UTSHelps.View
 			Title = "WorkShop";
 			Icon = "icon_sessions";
 
+			ShopSetsListView.Intent = TableIntent.Menu;
 			Content = ShopSetsListView;
 
 

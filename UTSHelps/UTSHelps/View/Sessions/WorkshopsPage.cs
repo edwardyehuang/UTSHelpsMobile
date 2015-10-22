@@ -5,14 +5,15 @@ namespace UTSHelps.View
 {
 	public class WorkshopsPage : ContentPage
 	{
-		public TableView SessionsListView { get;} = new TableView();
+		public TableView WorkshopsListView { get;} = new TableView();
 
 		public WorkshopsPage ()
 		{
 			Title = "Loading";
 			Icon = "icon_sessions";
 
-			Content = SessionsListView;
+			WorkshopsListView.Intent = TableIntent.Menu;
+			Content = WorkshopsListView;
 		}
 	}
 }

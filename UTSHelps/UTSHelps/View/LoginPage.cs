@@ -87,7 +87,7 @@ namespace UTSHelps.View
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 				},
 				VerticalOptions = LayoutOptions.CenterAndExpand,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 				//Opacity = 0.75,
 			};
 

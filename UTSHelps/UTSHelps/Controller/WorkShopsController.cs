@@ -70,7 +70,7 @@ namespace UTSHelps.Controller
 				section.Add (cell);
 			}
 
-			(page.SessionsListView.Root = new TableRoot ()).Add (section);
+			(page.WorkshopsListView.Root = new TableRoot ()).Add (section);
 		}
 
 		public void ShowSelectedWorkshop(Workshop workshop)
