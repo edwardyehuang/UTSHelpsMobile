@@ -40,7 +40,7 @@ namespace UTSHelps.Controller
 					TextColor = App.textColor, 
 				};
 
-				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInWorkshopSet (shop);
+				cell.Tapped += (sender, e) => ShowSectionsInWorkshopSet (shop);
 				section.Add (cell);
 			}
 
