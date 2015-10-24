@@ -7,27 +7,14 @@ namespace UTSHelps.View
 	{
 		public Label ErrorMessageLabel { protected set; get; } = new Label
 		{
-			HorizontalOptions = LayoutOptions.Start,
+			HorizontalOptions = LayoutOptions.FillAndExpand,
 			VerticalOptions = LayoutOptions.Center,
-			IsVisible = false,
+			IsVisible = true,
 		};
 
 		public TableView ShopInfoListView { get;} = new TableView
 		{
 			Intent = TableIntent.Menu,
-		};
-
-		public Label TopicLabel { protected set; get; } = new Label
-		{
-			HorizontalOptions = LayoutOptions.Start,
-			VerticalOptions = LayoutOptions.Center,
-		};
-
-		public Label DescriptionLabel { protected set; get; } = new Label
-		{
-			HorizontalOptions = LayoutOptions.Start,
-			VerticalOptions = LayoutOptions.Center,
-			LineBreakMode = LineBreakMode.WordWrap,
 		};
 			
 		public Label DetailInformationLabel { protected set; get; } = new Label
@@ -49,7 +36,7 @@ namespace UTSHelps.View
 			Text = "Add to waiting list",
 			HorizontalOptions = LayoutOptions.FillAndExpand,
 			VerticalOptions = LayoutOptions.Center,
-			IsVisible = false,
+			IsVisible = true,
 		};
 
 		public Button AddToReminderButton { protected set; get;} = new Button
@@ -57,6 +44,7 @@ namespace UTSHelps.View
 			Text = "Add to reminder",
 			HorizontalOptions = LayoutOptions.FillAndExpand,
 			VerticalOptions = LayoutOptions.Center,
+			IsVisible = true,
 		};
 
 
@@ -67,6 +55,7 @@ namespace UTSHelps.View
 
 			AddToReminderButton.BackgroundColor = App.utsBackgroundColor;
 			AddToReminderButton.TextColor = Color.White;
+			AddToReminderButton.IsVisible = false;
 
 			AddToWaitingListButton.BackgroundColor = App.utsBackgroundColor;
 			AddToWaitingListButton.TextColor = Color.White;
@@ -74,7 +63,7 @@ namespace UTSHelps.View
 			ErrorMessageLabel.BackgroundColor = Color.Red;
 			ErrorMessageLabel.TextColor = Color.White;
 			ErrorMessageLabel.IsVisible = false;
-
+		
 			Content = new StackLayout {
 				Orientation = StackOrientation.Vertical,
 				HorizontalOptions = LayoutOptions.FillAndExpand,

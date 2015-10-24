@@ -167,6 +167,60 @@ namespace UTSHelps.Model
 
 		}
 
+		public void AddToWaitingList()
+		{
+			BookingStatus = BookingStatuses.Booking;
+
+			UpdateSetData ();
+
+			if (OnDataUpdated != null) {
+
+				OnDataUpdated ();
+			}
+
+			var postData = "?workshopId=" + WorkshopId +
+				"&studentId=" + HelpsData.SelfData.Info.StudentId + 
+				"&userId=" + HelpsData.SelfData.Info.CreatorId;
+
+			server.SendRequest (new HttpRequestMessage (HttpMethod.Post, "api/workshop/wait/create" + postData),
+				(resultsRead) => {
+					try
+					{
+						Debug.WriteLine(resultsRead);
+
+						JObject results = JObject.Parse (resultsRead);
+
+						if (results["IsSuccess"].ToString().Equals("True"))
+						{
+							
+						}
+						else
+						{
+							ErrorMessage = results["DisplayMessage"].ToString();
+						}
+
+						UpdateSetData();
+
+						if (OnDataUpdated != null) {
+
+							OnDataUpdated ();
+						}
+					}
+					catch (InvalidCastException e) {
+
+						Debug.WriteLine ("Invaild data\n " + resultsRead + "\n Error Message :" + e.Message);
+					}
+					catch (JsonException e) {
+
+						Debug.WriteLine ("Invaild data\n " + resultsRead + "\n Error Message :" + e.Message);
+					}
+					catch (NullReferenceException e) {
+
+						Debug.WriteLine ("Invaild data\n " + resultsRead + "\n Error Message :" + e.Message);
+					}
+				});
+		}
+
 		public void UpdateSetData()
 		{
 			if (ReleatedSets != null) {

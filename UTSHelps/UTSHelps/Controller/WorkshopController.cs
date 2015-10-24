@@ -36,6 +36,8 @@ namespace UTSHelps.Controller
 					BookWorkShop(session);
 				}
 			};
+
+			page.AddToWaitingListButton.Clicked += (sender, e) => WaitingWorkShop(session);
 		}
 
 		public override void UpdateData ()
@@ -50,7 +52,7 @@ namespace UTSHelps.Controller
 			page.Title = session.topic;
 
 			AddInformation ("Topic", session.topic);
-			AddInformation ("Description", session.description);
+			AddInformation ("Description", session.description, () => PopTextPage("Description", session.description));
 			AddInformation ("Start Date", session.StartDate.Replace("T", " "));
 			AddInformation ("End Data", session.EndDate.Replace("T", " "));
 			AddInformation ("Cut off", session.cutoff);
@@ -58,9 +60,6 @@ namespace UTSHelps.Controller
 			AddInformation ("Reminder number", session.reminder_num);
 			AddInformation ("Reminder sent", session.reminder_sent);
 			AddInformation ("Days of week", session.DaysOfWeek);
-
-			(page.ShopInfoListView.Root = new TableRoot ()).Add (section);
-
 
 			if (session.BookingStatus == BookingStatuses.Booked)
 				page.BookButton.Text = "Cancel";
@@ -71,8 +70,30 @@ namespace UTSHelps.Controller
 			else if (session.BookingStatus == BookingStatuses.Booking)
 				page.BookButton.Text = "Booking...";
 
-			page.AddToReminderButton.IsVisible = session.BookingStatus == BookingStatuses.Booked;
-			page.AddToReminderButton.IsVisible = session.BookingStatus == BookingStatuses.Booked;
+			page.AddToReminderButton.IsVisible = (session.BookingStatus == BookingStatuses.Booked);
+
+			if (session.cutoff != null && session.BookingCount != null) {
+
+				int bookingCount, cutoff;
+
+				if (int.TryParse (session.BookingCount, out bookingCount) && int.TryParse (session.cutoff, out cutoff)) {
+
+					int diff = bookingCount - cutoff;
+
+					if (diff > 0) {
+						AddInformation ("Student in waiting", diff.ToString ());
+						page.BookButton.IsVisible = false;
+						page.AddToWaitingListButton.IsVisible = true;
+					} else {
+						page.BookButton.IsVisible = true;
+						page.AddToWaitingListButton.IsVisible = false;
+					}
+				}
+			} else {
+
+				page.BookButton.IsVisible = true;
+				page.AddToWaitingListButton.IsVisible = false;
+			}
 
 			if (page.ErrorMessageLabel.IsVisible = !session.ErrorMessage.Equals ("")) {
 
@@ -80,8 +101,7 @@ namespace UTSHelps.Controller
 				page.AddToWaitingListButton.IsVisible = true;
 			}
 
-
-			
+			(page.ShopInfoListView.Root = new TableRoot ()).Add (section);
 		}
 
 		public void AddInformation (string label, string text, Action action = null)
@@ -95,7 +115,12 @@ namespace UTSHelps.Controller
 			TextLabelCell cell = new TextLabelCell();
 			cell.Label = label;
 			cell.Text = text;
-			cell.HasArrow = action != null;
+
+			if (cell.HasArrow = action != null) {
+
+				cell.Tapped += (sender, e) => action();
+			}
+
 			section.Add(cell);
 
 /*			#else
@@ -103,6 +128,18 @@ namespace UTSHelps.Controller
 			cell.Text = label + " : " + text;
 			section.Add(cell);
 			#endif*/
+		}
+
+		public void PopTextPage(string title, string text)
+		{
+			var page = new ContentPage {
+				Title = title,
+				Content = new Label {
+					Text = text,
+				}
+			};
+
+			View.Navigation.PushAsync (page);
 		}
 
 
@@ -119,11 +156,18 @@ namespace UTSHelps.Controller
 			shop.Book ();
 		}
 
-		public  void CancelWorkShop(Workshop shop)
+		public void CancelWorkShop(Workshop shop)
 		{
 			Debug.WriteLine ("Request to cancel workshop : ID = " + shop.WorkshopId);	
 			shop.Cancel ();
 		}
+
+		public void WaitingWorkShop(Workshop shop)
+		{
+			Debug.WriteLine ("Request to waiting workshop : ID = " + shop.WorkshopId);	
+			shop.AddToWaitingList ();
+		}
+		
 	}
 }
 
