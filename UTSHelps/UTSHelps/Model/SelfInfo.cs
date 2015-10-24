@@ -7,7 +7,7 @@ namespace UTSHelps.Model
 		public string StudentId 			{ get; set; }
 		public string DateOfBirth 			{ get; set; } = "1 January 1995";
 		public string Gender 				{ get; set; } = "Male";
-		public string Degree 				{ get; set; } = "UG";
+		public string Degree 				{ get; set; } = "Undergraduate";
 		public string Status 				{ get; set; } = "International";
 		public string FirstLanguage 		{ get; set; } = "English";
 		public string CountryOrigin 		{ get; set;	} = "Australia";

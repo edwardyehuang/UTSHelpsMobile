@@ -50,6 +50,8 @@ namespace UTSHelps.Model
 		public BookingStatuses BookingStatus { get; set; }
 		public Workshops ReleatedSets { get; set;}
 
+		public string ErrorMessage { get; set; } = "";
+
 
 		public Workshop ()
 		{
@@ -87,6 +89,7 @@ namespace UTSHelps.Model
 						else
 						{
 							BookingStatus = BookingStatuses.NotBooked;
+							ErrorMessage = results["DisplayMessage"].ToString();
 						}
 
 						UpdateSetData();

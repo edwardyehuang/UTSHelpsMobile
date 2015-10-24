@@ -140,5 +140,6 @@
   <ItemGroup>
     <Folder Include="Resources\Renderer\" />
     <Folder Include="UI\" />
+    <Folder Include="DependencyService\" />
   </ItemGroup>
 </Project>

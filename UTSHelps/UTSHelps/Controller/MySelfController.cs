@@ -11,16 +11,14 @@ namespace UTSHelps.Controller
 
 		public MySelfController (MainData mainData) : base (new MySelfPage(), mainData.SelfData)
 		{
-			MySelfPage view = (MySelfPage)View;
-
-			view.BuildTable (Model.HelpsData);
 		}
 
 		public override void UpdateData ()
 		{
 			base.UpdateData ();
 
-		
+			MySelfPage view = (MySelfPage)View;
+			view.BuildTable (Model.HelpsData);
 		}
 
 		public override void RegViewEvents ()
