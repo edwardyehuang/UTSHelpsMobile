@@ -1,4 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UTSHelps.Server;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 using UTSHelps.View;
 using UTSHelps.Model;
@@ -25,9 +34,20 @@ namespace UTSHelps.Controller
 				}
 			});
 
+			string userInfo = App.Setting.GetSettingValue ("UserInfo");
+
+			if (userInfo != null) {
+
+				mainData.SelfData.Info = JsonConvert.DeserializeObject<SelfInfo> (userInfo);
+				bLogged = true;
+			}
+
 			if (!bLogged) {
 				ShowLoginPage ();
+			} else {
+				BuildChildViews ();
 			}
+
 		}
 
 		protected void ShowLoginPage()

@@ -1,6 +1,7 @@
 ﻿using System;
 using UTSHelps.View;
 using UTSHelps.Model;
+using Xamarin.Forms;
 using System.Diagnostics;
 
 namespace UTSHelps.Controller
@@ -19,6 +20,16 @@ namespace UTSHelps.Controller
 
 			MySelfPage view = (MySelfPage)View;
 			view.BuildTable (Model.HelpsData);
+
+			var signOutButton = new TextCell {
+				Text = "Sign out",
+			};
+
+			signOutButton.Tapped += (sender, e) => SignOut();
+
+			view.SelfTable.Root.Add (new TableSection {
+				signOutButton
+			});
 		}
 
 		public override void RegViewEvents ()
@@ -31,6 +42,16 @@ namespace UTSHelps.Controller
 		{
 			mySelfInfo = new MySelfInfoController();
 		    View.Navigation.PushAsync (mySelfInfo.View);
+		}
+
+		public async void SignOut()
+		{
+			var answer = await View.DisplayAlert ("Sign out", "Are you sure to sign out?", "Sign out", "Cancel");
+
+			if (answer) {
+
+				App.Setting.RemoveSettingValue ("UserInfo");
+			}
 		}
 	}
 }

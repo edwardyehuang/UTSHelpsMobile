@@ -51,6 +51,7 @@ namespace UTSHelps.Model
 
 				if (results["IsSuccess"].ToString().Equals("True"))
 				{
+					App.Setting.SetSettingValue("UserInfo", jsonStr);
 					callback(true);
 				}
 				else
