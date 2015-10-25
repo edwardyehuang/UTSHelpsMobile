@@ -132,6 +132,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="UI\TextLabeliOSCell.cs" />
     <Compile Include="UI\TextLabeliOSCellRenderer.cs" />
+    <Compile Include="DependencyService\Event.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />

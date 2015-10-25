@@ -6,6 +6,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.Text;
 using UTSHelps.UI;
+using UTSHelps.DependencyServices;
 
 namespace UTSHelps.Controller
 {
@@ -38,6 +39,16 @@ namespace UTSHelps.Controller
 			};
 
 			page.AddToWaitingListButton.Clicked += (sender, e) => WaitingWorkShop(session);
+			page.AddToReminderButton.Clicked += (sender, e) => {
+				try
+				{
+					DependencyService.Get<IEvent>().AddEvent(session.topic, session.GetStartDate(), session.GetEndDate());
+				}
+				catch (Exception exception)
+				{
+					throw exception;
+				}
+			};
 		}
 
 		public override void UpdateData ()

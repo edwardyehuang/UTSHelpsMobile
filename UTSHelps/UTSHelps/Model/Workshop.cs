@@ -58,6 +58,36 @@ namespace UTSHelps.Model
 			
 		}
 
+		public DateTime GetStartDate()
+		{
+			string []parts = StartDate.Split('T');
+			string []dateParts = parts [0].Split ('-');
+			string [] timeParts = parts [1].Split (':');
+
+			return new DateTime (int.Parse (dateParts [0]),
+				int.Parse (dateParts [1]),
+				int.Parse (dateParts [2]),
+				int.Parse (timeParts [0]),
+				int.Parse (timeParts [1]),
+				int.Parse (timeParts [2])
+			);
+		}
+
+		public DateTime GetEndDate()
+		{
+			string []parts = EndDate.Split('T');
+			string []dateParts = parts [0].Split ('-');
+			string [] timeParts = parts [1].Split (':');
+
+			return new DateTime (int.Parse (dateParts [0]),
+				int.Parse (dateParts [1]),
+				int.Parse (dateParts [2]),
+				int.Parse (timeParts [0]),
+				int.Parse (timeParts [1]),
+				int.Parse (timeParts [2])
+			);
+		}
+
 
 		public void Book()
 		{
