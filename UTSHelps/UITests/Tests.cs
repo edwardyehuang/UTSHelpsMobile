@@ -5,17 +5,31 @@ using NUnit.Framework;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
+/// <summary>
+/// UI tests
+/// 
+/// Requirements:
+/// - NUnit 2.6.4
+/// - Xamarin UITest 1.2.0
+/// - 'Connect Hardware Keyboard' should be unchecked
+/// 
+/// Note: execution can be delayed for up to 20 seconds for some reason
+/// </summary>
+
 namespace UTSHelps.UITests
 {
 	[TestFixture (Platform.Android)] 
-	[TestFixture (Platform.iOS)] // 'Connect Hardware Keyboard' should be unchecked!
+	[TestFixture (Platform.iOS)] // 
 	public class Tests
 	{
 		IApp app;
 		Platform platform;
 
-		string testLogin = "12345678";
-		string testPass  = "test123";
+		string LOGIN = "12345678";
+		string PASSWORD  = "test123";
+
+		string WORKSHOP = "19 Writing in academic style";
+		string SET = "4 Writing Skills";
 
 		public Tests (Platform platform)
 		{
@@ -34,15 +48,15 @@ namespace UTSHelps.UITests
 		/// </summary>
 		public void BookSession ()
 		{
-			AppResult[] results = app.WaitForElement (c => c.Marked ("UTS:Helps"));
+			app.WaitForElement (c => c.Marked ("UTS:Helps"));
 
 			// Login
 			if (platform == Platform.iOS) {
-				app.EnterText (c => c.Marked ("Student Number"), testLogin);
-				app.EnterText (c => c.Marked ("Password"),	testPass);
+				app.EnterText (c => c.Marked ("Student Number"), LOGIN);
+				app.EnterText (c => c.Marked ("Password"),	PASSWORD);
 			} else {
-				app.EnterText (c => c.TextField ().Index (0), testLogin);
-				app.EnterText (c => c.TextField ().Index (1), testPass);
+				app.EnterText (c => c.TextField ().Index (0), LOGIN);
+				app.EnterText (c => c.TextField ().Index (1), PASSWORD);
 			}
 
 			app.Tap (c => c.Marked("Sign in"));
@@ -53,17 +67,17 @@ namespace UTSHelps.UITests
 			app.Tap (c => c.Marked("WorkShop"));
 
 			// Workshops sets
-			app.WaitForElement (c => c.Marked ("4 Writing Skills"));
+			app.WaitForElement (c => c.Marked (SET));
 
-			app.Tap (c => c.Marked("4 Writing Skills"));
+			app.Tap (c => c.Marked(SET));
 
 			// Workshops
-			app.WaitForElement (c => c.Marked ("19 Writing in academic style"));
+			app.WaitForElement (c => c.Marked (WORKSHOP));
 
-			app.Tap (c => c.Marked("19 Writing in academic style"));
+			app.Tap (c => c.Marked(WORKSHOP));
 
 			// Worksjop page
-			app.WaitForElement (c => c.Marked ("Topic : Writing in academic style"));
+			app.WaitForElement (c => c.Marked ("Topic"));
 
 			// try to book
 			try {
@@ -78,14 +92,21 @@ namespace UTSHelps.UITests
 			app.Tap (c => c.Marked("Booking"));
 
 			// See if booking is there
-			app.WaitForElement (c => c.Marked ("19 Writing in academic style"));
+			app.WaitForElement (c => c.Marked (WORKSHOP));
 
 			// Open the booking
-			app.Tap (c => c.Marked("19 Writing in academic style"));
+			app.Tap (c => c.Marked(WORKSHOP));
 
+			// Cancell booking
 			app.Tap (c => c.Marked("Cancel"));
 
 			app.Back ();
+
+			app.WaitForElement (c => c.Marked ("Booking"));
+
+			// Booking should absent
+			app.WaitForNoElement (c => c.Marked (WORKSHOP));
+
 		}
 	}
 }
