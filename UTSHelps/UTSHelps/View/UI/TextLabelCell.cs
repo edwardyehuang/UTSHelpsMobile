@@ -22,6 +22,10 @@ namespace UTSHelps.UI
 		}
 
 		public bool HasArrow { get; set;} = false;
+		public TextAlignment XAlign { get; set; } = TextAlignment.Start;
+
+		public Color BackgrondColor { get; set;} = Color.White;
+		public Color LabelColor { get; set;} = Color.Black;
 
 
 		public TextLabelCell ()

@@ -27,7 +27,10 @@ namespace UTSHelps.Controller
 
 			loginCtrl.SuccessSignInEvent = (string userName) => mainData.SelfData.RegStudent (userName, IsSuccess => {
 				if (IsSuccess)
+				{
 					BuildChildViews ();
+					bLogged = true;
+				}
 				else {
 					loginCtrl.ReSignin ();
 					ShowLoginPage ();
@@ -52,6 +55,9 @@ namespace UTSHelps.Controller
 
 		protected void ShowLoginPage()
 		{
+			TabbedPage tab = (TabbedPage)View;
+			tab.Children.Clear ();
+
 			View.Navigation.PushModalAsync(loginCtrl.View, false);
 		}
 
@@ -61,7 +67,10 @@ namespace UTSHelps.Controller
 			tab.Children.Add ((new LatestController ()).View);
 			tab.Children.Add ((new WorkShopsSetsController(mainData)).View);
 			tab.Children.Add ((new BookingsController(mainData)).View);
-			tab.Children.Add ((new MySelfController(mainData)).View);
+			tab.Children.Add ((new MySelfController(mainData)
+				{
+					ShowLoginPage = () => ShowLoginPage()
+				}).View);
 		}
 	}
 }

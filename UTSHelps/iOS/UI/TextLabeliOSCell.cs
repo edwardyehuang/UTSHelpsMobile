@@ -9,7 +9,7 @@ namespace UTSHelps.iOS
 {
 	public class TextLabeliOSCell : UITableViewCell
 	{
-		public TextLabeliOSCell (NSString cellId) : base (UITableViewCellStyle.Value1, cellId)
+		public TextLabeliOSCell (NSString cellId, UITableViewCellStyle style = UITableViewCellStyle.Value1) : base (style, cellId)
 		{
 			Accessory = UITableViewCellAccessory.DisclosureIndicator;
 		}

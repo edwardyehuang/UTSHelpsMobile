@@ -59,6 +59,22 @@ namespace UTSHelps.Droid
 			{
 			}
 		}
+		
+		public partial class Layout
+		{
+			
+			// aapt resource value: 0x7f030000
+			public const int TextLabelDroidCell = 2130903040;
+			
+			static Layout()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Layout()
+			{
+			}
+		}
 	}
 }
 #pragma warning restore 1591

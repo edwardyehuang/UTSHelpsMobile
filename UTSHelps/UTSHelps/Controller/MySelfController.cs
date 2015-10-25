@@ -2,6 +2,7 @@
 using UTSHelps.View;
 using UTSHelps.Model;
 using Xamarin.Forms;
+using UTSHelps.UI;
 using System.Diagnostics;
 
 namespace UTSHelps.Controller
@@ -9,6 +10,8 @@ namespace UTSHelps.Controller
 	public class MySelfController : BaseController
 	{
 		protected MySelfInfoController mySelfInfo;
+
+		public Action ShowLoginPage { get; set; }
 
 		public MySelfController (MainData mainData) : base (new MySelfPage(), mainData.SelfData)
 		{
@@ -21,8 +24,13 @@ namespace UTSHelps.Controller
 			MySelfPage view = (MySelfPage)View;
 			view.BuildTable (Model.HelpsData);
 
-			var signOutButton = new TextCell {
-				Text = "Sign out",
+			var signOutButton = new TextLabelCell () {
+				HasArrow = false,
+				Label = "Sign out",
+				Text = null,
+				XAlign = TextAlignment.Center,
+				BackgrondColor = Color.Red,
+				LabelColor = Color.White
 			};
 
 			signOutButton.Tapped += (sender, e) => SignOut();
@@ -51,6 +59,7 @@ namespace UTSHelps.Controller
 			if (answer) {
 
 				App.Setting.RemoveSettingValue ("UserInfo");
+				ShowLoginPage ();
 			}
 		}
 	}
