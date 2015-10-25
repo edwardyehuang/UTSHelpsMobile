@@ -8,12 +8,12 @@ using UTSHelps.DependencyServices;
 using UTSHelps.iOS;
 using System.Diagnostics;
 
-[assembly: Xamarin.Forms.Dependency (typeof (Setting))]
+[assembly: Xamarin.Forms.Dependency (typeof (Setting_iOS))]
 namespace UTSHelps.iOS
 {
-	public class Setting : ISetting
+	public class Setting_iOS : ISetting
 	{
-		public Setting ()
+		public Setting_iOS ()
 		{
 		}
 

@@ -4,6 +4,7 @@ using System.Linq;
 
 using Android.Widget;
 using Android.App;
+using Android.Views;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -23,14 +24,32 @@ namespace UTSHelps.Droid
 			var view = convertView;
 
 			if (view == null) {
-				// no view to re-use, create new
-				view = (context as Activity).LayoutInflater.Inflate (Resource.Layout.TextLabelDroidCell, null);
+				
+				view = new Android.Widget.RelativeLayout (context);
 			}
 
-		//	view.FindViewById<TextView> (Resource
+			TextView label = new TextView (context);
+			label.Text = cell.Label;
+			label.SetTextColor (cell.LabelColor.ToAndroid ());
+
+			if (cell.XAlign == Xamarin.Forms.TextAlignment.Start)
+				label.Gravity = GravityFlags.Left | GravityFlags.CenterVertical;
+			else if (cell.XAlign == Xamarin.Forms.TextAlignment.Center) {
+				label.Gravity = GravityFlags.Center;
+			}
+
+			TextView DetailText = new TextView (context);
+			label.Text = cell.Label;
+			label.SetTextColor (cell.LabelColor.ToAndroid ());
+			DetailText.Gravity = GravityFlags.Right | GravityFlags.CenterVertical;
+
+			((Android.Widget.RelativeLayout)view).AddView (label);
+			((Android.Widget.RelativeLayout)view).AddView (DetailText);
+
+			view.SetBackgroundColor (cell.BackgrondColor.ToAndroid ());
 			
 
-			return base.GetCellCore (item, convertView, parent, context);
+			return view;
 		}
 	}
 }

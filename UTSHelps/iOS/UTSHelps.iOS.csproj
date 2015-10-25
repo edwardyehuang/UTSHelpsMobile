@@ -142,7 +142,7 @@
     <Compile Include="UI\TextLabeliOSCell.cs" />
     <Compile Include="UI\TextLabeliOSCellRenderer.cs" />
     <Compile Include="DependencyService\Event.cs" />
-    <Compile Include="DependencyService\Setting.cs" />
+    <Compile Include="DependencyService\Setting_iOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />
