@@ -5,6 +5,7 @@ using UIKit;
 
 using Xamarin.Forms.Platform.iOS;
 
+
 namespace UTSHelps.iOS
 {
 	public class TextLabeliOSCell : UITableViewCell

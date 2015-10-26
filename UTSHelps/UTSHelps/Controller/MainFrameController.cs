@@ -67,10 +67,10 @@ namespace UTSHelps.Controller
 //			tab.Children.Add ((new LatestController ()).View);
 			tab.Children.Add ((new WorkShopsSetsController(mainData)).View);
 			tab.Children.Add ((new BookingsController(mainData)).View);
-			tab.Children.Add ((new MySelfController(mainData)
-				{
-					ShowLoginPage = () => ShowLoginPage()
-				}).View);
+			tab.Children.Add ((new MySelfController(mainData){
+				
+				ShowLoginPage = () => ShowLoginPage()
+			}).View);
 		}
 	}
 }

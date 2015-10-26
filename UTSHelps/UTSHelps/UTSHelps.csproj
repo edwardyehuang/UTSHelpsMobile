@@ -73,6 +73,7 @@
     <Compile Include="View\UI\TextLabelCell.cs" />
     <Compile Include="Controller\DependencyService\IEvent.cs" />
     <Compile Include="Controller\DependencyService\ISetting.cs" />
+    <Compile Include="Model\Preferences.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

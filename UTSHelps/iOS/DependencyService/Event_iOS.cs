@@ -8,14 +8,14 @@ using UTSHelps.DependencyServices;
 using UTSHelps.iOS;
 using System.Diagnostics;
 
-[assembly: Xamarin.Forms.Dependency (typeof (Event))]
+[assembly: Xamarin.Forms.Dependency (typeof (Event_iOS))]
 namespace UTSHelps.iOS
 {
-	public class Event : UIViewController, IEvent
+	public class Event_iOS : UIViewController, IEvent
 	{
 		protected CreateEventEditViewDelegate eventControllerDelegate;
 
-		public Event ()
+		public Event_iOS ()
 		{
 		}
 
