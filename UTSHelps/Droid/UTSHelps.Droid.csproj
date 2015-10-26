@@ -16,6 +16,8 @@
     <AssemblyName>UTSHelps.Droid</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,12 +75,6 @@
     <Reference Include="ZXingNetMobile">
       <HintPath>..\packages\ZXing.Net.Mobile.1.5.1.0\lib\MonoAndroid403\ZXingNetMobile.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UTSHelps\UTSHelps.csproj">
-      <Project>{1C50AFB6-7163-4347-A914-6170CC219C04}</Project>
-      <Name>UTSHelps</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
