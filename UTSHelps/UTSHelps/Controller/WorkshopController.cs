@@ -13,6 +13,7 @@ namespace UTSHelps.Controller
 	public class WorkshopController : BaseController
 	{
 		protected TableSection section = new TableSection ();
+		protected TableSection buttonSection = new TableSection ();
 
 		public WorkshopController (Workshop session) : base(new WorkshopPage(), session)
 		{
@@ -26,7 +27,7 @@ namespace UTSHelps.Controller
 			Workshop session = (Workshop)Model;
 			WorkshopPage page = (WorkshopPage)View;
 
-			page.BookButton.Clicked += (object sender, EventArgs e) => 
+			page.BookButton.Tapped += (object sender, EventArgs e) => 
 			{
 				if (session.BookingStatus == BookingStatuses.Booked)
 				{
@@ -38,8 +39,9 @@ namespace UTSHelps.Controller
 				}
 			};
 
-			page.AddToWaitingListButton.Clicked += (sender, e) => WaitingWorkShop(session);
-			page.AddToReminderButton.Clicked += (sender, e) => {
+			page.AddToWaitingListButton.Tapped += (sender, e) => WaitingWorkShop(session);
+
+			page.AddToReminderButton.Tapped += (sender, e) => {
 				try
 				{
 					DependencyService.Get<IEvent>().AddEvent(session.topic, session.GetStartDate(), session.GetEndDate());
@@ -72,14 +74,17 @@ namespace UTSHelps.Controller
 			AddInformation ("Reminder sent", session.reminder_sent);
 			AddInformation ("Days of week", session.DaysOfWeek);
 
-			if (session.BookingStatus == BookingStatuses.Booked)
-				page.BookButton.Text = "Cancel";
-			else if (session.BookingStatus == BookingStatuses.Canceling)
-				page.BookButton.Text = "Canceling...";
-			else if (session.BookingStatus == BookingStatuses.NotBooked)
-				page.BookButton.Text = "Book";
+			if (session.BookingStatus == BookingStatuses.Booked) {
+				page.BookButton.Label = "Cancel";
+				page.BookButton.BackgroundColor = Color.Red;
+			} else if (session.BookingStatus == BookingStatuses.Canceling)
+				page.BookButton.Label = "Canceling...";
+			else if (session.BookingStatus == BookingStatuses.NotBooked) {
+				page.BookButton.Label = "Book";
+				page.BookButton.BackgroundColor = Color.Green;
+			}
 			else if (session.BookingStatus == BookingStatuses.Booking)
-				page.BookButton.Text = "Booking...";
+				page.BookButton.Label = "Booking...";
 
 			page.AddToReminderButton.IsVisible = (session.BookingStatus == BookingStatuses.Booked);
 
@@ -113,6 +118,17 @@ namespace UTSHelps.Controller
 			}
 
 			(page.ShopInfoListView.Root = new TableRoot ()).Add (section);
+
+			buttonSection = new TableSection ();
+
+			if (page.BookButton.IsVisible)
+				buttonSection.Add (page.BookButton);
+			if (page.AddToWaitingListButton.IsVisible)
+				buttonSection.Add (page.AddToWaitingListButton);
+			if (page.AddToReminderButton.IsVisible)
+				buttonSection.Add (page.AddToReminderButton);
+			
+			page.ShopInfoListView.Root.Add (buttonSection);
 		}
 
 		public void AddInformation (string label, string text, Action action = null)

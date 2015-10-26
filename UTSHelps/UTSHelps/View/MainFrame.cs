@@ -9,9 +9,9 @@ namespace UTSHelps.View
 		public MainFrame ()
 		{
 			this.Title = "UTS Helps";	//Title of the mainframe
-			#if __IOS__
+
 			this.BackgroundColor = App.utsBackgroundColor;
-			#endif
+
 			NavigationPage.SetBackButtonTitle (this, "Back");
 		}
 

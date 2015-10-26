@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using UTSHelps.UI;
 
 namespace UTSHelps.View
 {
@@ -16,49 +17,40 @@ namespace UTSHelps.View
 		{
 			Intent = TableIntent.Menu,
 		};
-			
-		public Label DetailInformationLabel { protected set; get; } = new Label
+
+		public TextLabelCell BookButton { protected set; get;} = new TextLabelCell
 		{
-			HorizontalOptions = LayoutOptions.Start,
-			VerticalOptions = LayoutOptions.Center,
+			Label = "Book",
+			XAlign = TextAlignment.Center,
 		};
 
-
-		public Button BookButton { protected set; get;} = new Button
+		public TextLabelCell AddToWaitingListButton  { protected set; get;} = new TextLabelCell
 		{
-			Text = "Book",
-			HorizontalOptions = LayoutOptions.FillAndExpand,
-			VerticalOptions = LayoutOptions.Center,
-		};
-
-		public Button AddToWaitingListButton  { protected set; get;} = new Button
-		{
-			Text = "Add to waiting list",
-			HorizontalOptions = LayoutOptions.FillAndExpand,
-			VerticalOptions = LayoutOptions.Center,
+			Label = "Add to waiting list",
+			XAlign = TextAlignment.Center,
 			IsVisible = true,
 		};
 
-		public Button AddToReminderButton { protected set; get;} = new Button
+		public TextLabelCell AddToReminderButton { protected set; get;} = new TextLabelCell
 		{
-			Text = "Add to reminder",
-			HorizontalOptions = LayoutOptions.FillAndExpand,
-			VerticalOptions = LayoutOptions.Center,
+			Label = "Add to reminder",
+			XAlign = TextAlignment.Center,
 			IsVisible = true,
 		};
 
 
 		public WorkshopPage ()
 		{
-			BookButton.BackgroundColor = App.utsBackgroundColor;
-			BookButton.TextColor = Color.White;
+			BookButton.BackgroundColor = Color.Green;
+			BookButton.LabelColor = Color.White;
+
 
 			AddToReminderButton.BackgroundColor = App.utsBackgroundColor;
-			AddToReminderButton.TextColor = Color.White;
+			AddToReminderButton.LabelColor = Color.White;
 			AddToReminderButton.IsVisible = false;
 
 			AddToWaitingListButton.BackgroundColor = App.utsBackgroundColor;
-			AddToWaitingListButton.TextColor = Color.White;
+			AddToWaitingListButton.LabelColor = Color.White;
 
 			ErrorMessageLabel.BackgroundColor = Color.Red;
 			ErrorMessageLabel.TextColor = Color.White;
@@ -71,10 +63,6 @@ namespace UTSHelps.View
 				{ 
 					ErrorMessageLabel,
 					ShopInfoListView,
-					BookButton, 
-					AddToWaitingListButton,
-					AddToReminderButton,
-
 				}
 			};
 		}

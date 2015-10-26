@@ -31,13 +31,16 @@ namespace UTSHelps.iOS
 
 			if (nativeCell == null) {
 
-				var style = cell.Text == null ? UITableViewCellStyle.Default : UITableViewCellStyle.Value1;
+				var style = cell.Text == null ?
+					UITableViewCellStyle.Default : (cell.Text.Equals("") ? 
+						UITableViewCellStyle.Default : UITableViewCellStyle.Value1);
+				
 				nativeCell = new TextLabeliOSCell (rid, style);
 			}
 
 			nativeCell.TextLabel.Text = cell.Label;
 
-			if (cell.Text != null) {
+			if (cell.Text != null && nativeCell.DetailTextLabel != null) {
 				nativeCell.DetailTextLabel.Text = cell.Text;
 			} 
 
@@ -50,7 +53,7 @@ namespace UTSHelps.iOS
 			else
 				nativeCell.TextLabel.TextAlignment = UITextAlignment.Right;
 
-			nativeCell.BackgroundColor = cell.BackgrondColor.ToUIColor ();
+			nativeCell.BackgroundColor = cell.BackgroundColor.ToUIColor ();
 			nativeCell.TextLabel.TextColor = cell.LabelColor.ToUIColor ();
 
 

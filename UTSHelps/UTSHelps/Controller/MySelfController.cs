@@ -22,6 +22,8 @@ namespace UTSHelps.Controller
 			base.UpdateData ();
 
 			MySelfPage view = (MySelfPage)View;
+			MySelf model = (MySelf)Model;
+
 			view.BuildTable (Model.HelpsData);
 
 			var signOutButton = new TextLabelCell () {
@@ -29,7 +31,7 @@ namespace UTSHelps.Controller
 				Label = "Sign out",
 				Text = null,
 				XAlign = TextAlignment.Center,
-				BackgrondColor = Color.Red,
+				BackgroundColor = Color.Red,
 				LabelColor = Color.White
 			};
 
@@ -37,6 +39,9 @@ namespace UTSHelps.Controller
 
 			view.SelfTable.Root.Add (new TableSection {
 				signOutButton
+			});
+
+			model.RegStudent (model.Info.StudentId, (IsSuccess) => {
 			});
 		}
 
