@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Xamarin.Forms;
 
 namespace UTSHelps.Model
 {
@@ -43,23 +44,51 @@ namespace UTSHelps.Model
 
 			server.SendJsonRequest (request, (string resultsRead) => {
 
-
-				Debug.WriteLine("Reg response : " + resultsRead);
-				JObject results = JObject.Parse (resultsRead);
-
-				Debug.WriteLine(results["IsSuccess"].ToString());
-
-				if (results["IsSuccess"].ToString().Equals("True"))
+				try
 				{
-					App.Setting.SetSettingValue("UserInfo", jsonStr);
-					callback(true);
+					Debug.WriteLine("Reg response : " + resultsRead);
+					JObject results = JObject.Parse (resultsRead);
+
+					Debug.WriteLine(results["IsSuccess"].ToString());
+
+					if (results["IsSuccess"].ToString().Equals("True"))
+					{
+						App.Setting.SetSettingValue("UserInfo", jsonStr);
+						callback(true);
+					}
+					else
+					{
+						callback(false);
+					}
 				}
-				else
+				catch (Exception e)
 				{
-					callback(false);
+
 				}
 			});
 		}
+
+		public void RecordAttendance(string requestPart, Action <bool>callback)
+		{
+			var request = new HttpRequestMessage (HttpMethod.Post, "api/workshop/attendance?StudentId=" + Info.StudentId + "&" + requestPart);
+
+			server.SendRequest (request, (string resultsRead) => {
+
+				try
+				{
+					JObject results = JObject.Parse (resultsRead);
+
+					Debug.WriteLine(results["IsSuccess"].ToString());
+
+					callback(results["IsSuccess"].ToString().Equals("True"));
+				}
+				catch (Exception e)
+				{
+					
+				}
+			});
+		}
+
 
 		public void ReadDataFromLocal()
 		{

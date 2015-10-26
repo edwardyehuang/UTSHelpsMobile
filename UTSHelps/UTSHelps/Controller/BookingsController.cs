@@ -3,6 +3,8 @@ using UTSHelps.View;
 using UTSHelps.Model;
 using Xamarin.Forms;
 using System.Diagnostics;
+using ZXing;
+using ZXing.Mobile;
 
 namespace UTSHelps.Controller
 {
@@ -41,7 +43,10 @@ namespace UTSHelps.Controller
 				section.Add (cell);
 			}
 
-			(page.BookingsListView.Root = new TableRoot ()).Add (section);
+			page.RecordAttendanceButton.Tapped += (sender, e) => ScanQRCode();
+
+			(page.BookingsListView.Root = new TableRoot ()).Add (new TableSection {page.RecordAttendanceButton});
+			page.BookingsListView.Root.Add (section);
 		}
 
 		public void ShowSelectedWorkshop(Booking booking)
@@ -59,6 +64,66 @@ namespace UTSHelps.Controller
 		public void AddNewReleatedWorkshop(Booking booking)
 		{
 			booking.ReleatedWorkshop = booking.ToWorkShop ();
+		}
+
+		public async void ScanQRCode()
+		{
+			var scanner = new ZXing.Mobile.MobileBarcodeScanner ();
+
+			var result = await scanner.Scan();
+
+			if (result != null) {
+				Debug.WriteLine ("Scanned barcode: " + result.Text);
+			
+				RecordAttandance (result.Text);
+			}
+
+		}
+
+		public void RecordAttandance(string requestPart)
+		{
+			try
+			{
+				string[] parts = requestPart.Split ('&');
+
+				string workShopId = (parts[0].Split('='))[1];
+
+				Model.HelpsData.SelfData.RecordAttendance(requestPart, (callback) => {
+
+					if (!callback)
+					{
+						View.DisplayAlert("Fail", "Record attandance failed", "okay");
+						return;
+					}
+
+					var model = (Bookings)Model;
+
+					Booking booking =  model.GetBooking(workShopId);
+
+					if (booking != null)
+					{
+						if (booking.ReleatedWorkshop == null) {
+
+							AddNewReleatedWorkshop (booking);
+						}
+
+						booking.ReleatedWorkshop.BookingStatus = BookingStatuses.Attended;
+						View.DisplayAlert("Success", "Record attandance success", "okay");
+					}
+					else
+					{
+						View.DisplayAlert("Unkown", "Record attandance success but cannot find booking", "okay");
+					}
+				});
+			}
+			catch (NullReferenceException e) {
+
+				Debug.WriteLine ("Invaild request part : " + requestPart);
+			}
+			catch (IndexOutOfRangeException e) {
+
+				Debug.WriteLine ("Invaild request part : " + requestPart);
+			}
 		}
 	}
 }

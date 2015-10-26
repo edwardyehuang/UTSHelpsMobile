@@ -8,6 +8,10 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using ZXing;
+using ZXing.Mobile;
+
+
 namespace UTSHelps.Droid
 {
 	[Activity (Label = "UTSHelps", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -18,6 +22,9 @@ namespace UTSHelps.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
+
+			//Initialize QR code scanner
+			MobileBarcodeScanner.Initialize (Application);
 
 			LoadApplication (new App ());
 		}

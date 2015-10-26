@@ -11,7 +11,6 @@ namespace UTSHelps
 		Attended,
 		Missed,
 		Unavailable,
-
 	}
 }
 
