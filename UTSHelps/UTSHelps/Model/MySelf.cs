@@ -27,8 +27,6 @@ namespace UTSHelps.Model
 
 
 			} 
-
-
 		}
 
 		public void RegStudent(string studentId, RegStudentDelegate callback)

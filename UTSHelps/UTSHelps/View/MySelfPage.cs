@@ -11,6 +11,7 @@ namespace UTSHelps.View
 	{
 		public TableView SelfTable { protected set; get;} = new TableView();
 		public TableSection BasicInfoSection { protected set; get;} = new TableSection();
+		public TableSection SkinButtonsSection { protected set; get; } = new TableSection();
 
 		public MySelfPage ()
 		{
@@ -51,6 +52,20 @@ namespace UTSHelps.View
 			(SelfTable.Root = new TableRoot ()).Add (BasicInfoSection);
 		}
 
+		public void BuildSkinTable()
+		{
+			TableSection section = new TableSection ();
+
+			var cell = new TextLabelCell (){ Label = "Change skin"};
+
+			cell.HasArrow = true;
+			cell.Tapped += (sender, e) => PopColorSelectionPage ();
+
+			section.Add (cell);
+
+			SelfTable.Root.Add (section);
+		}
+
 		public void AddTextLabelCell (string label, string text, Action action = null)
 		{
 			var cell = new TextLabelCell (){ Label = label, Text = text };
@@ -62,6 +77,18 @@ namespace UTSHelps.View
 
 			BasicInfoSection.Add (cell);
 		}
+
+		public void AddSkinButton (string name, Color color)
+		{
+			var cell = new TextLabelCell (){ Label = name, LabelColor = Color.White, BackgroundColor = color };
+
+			cell.HasArrow = false;
+			cell.Tapped += (sender, e) => App.MainNavigationPage.BarBackgroundColor = color;
+			cell.XAlign = TextAlignment.Center;
+
+			SkinButtonsSection.Add (cell);
+		}
+
 
 		protected EntryCell CreateEntryCell(string label, Action action, string initialText)
 		{
@@ -137,6 +164,27 @@ namespace UTSHelps.View
 			};
 
 			Navigation.PushAsync (popPage);
+		}
+
+		public void PopColorSelectionPage()
+		{
+			TableView tableView = new TableView ();
+			tableView.Intent = TableIntent.Menu;
+			tableView.Root = new TableRoot ();
+
+
+			SkinButtonsSection.Clear ();
+
+			AddSkinButton ("UTS Blue", new Color (0, 0.6, 0.8));
+			AddSkinButton ("Helps Red", new Color (0.91, 0, 0.027));
+			AddSkinButton ("Edward purple", new Color (0.58, 0.129, 0.57));
+
+			tableView.Root.Add (SkinButtonsSection);
+
+			Navigation.PushAsync (new ContentPage {
+				Content = tableView,
+				Title = "Change Color",
+			});
 		}
 
 		public readonly string[] degrees 	= { "Undergraduate", "Postgraduate" };

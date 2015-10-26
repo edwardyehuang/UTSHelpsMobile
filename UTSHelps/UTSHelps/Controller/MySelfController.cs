@@ -26,6 +26,8 @@ namespace UTSHelps.Controller
 
 			view.BuildTable (Model.HelpsData);
 
+			view.BuildSkinTable ();
+
 			var signOutButton = new TextLabelCell () {
 				HasArrow = false,
 				Label = "Sign out",

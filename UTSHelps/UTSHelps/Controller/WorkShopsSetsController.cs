@@ -35,7 +35,7 @@ namespace UTSHelps.Controller
 			foreach (WorkshopSet shop in shops.Sets) {
 
 				TextCell cell = new TextCell {
-					Text = shop.Id + " " + shop.Name,
+					Text = shop.Name,
 					Detail = shop.Archived,
 					TextColor = App.textColor, 
 				};

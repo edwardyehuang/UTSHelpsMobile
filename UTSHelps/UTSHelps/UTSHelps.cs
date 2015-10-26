@@ -9,7 +9,7 @@ namespace UTSHelps
 {
 	public class App : Application
 	{
-		private NavigationPage mainNavigationPage;
+		public static NavigationPage MainNavigationPage {get ;set;}
 		private MainFrameController mainFrame = new MainFrameController ();
 		public static Color utsBackgroundColor = new Color(0, 0.6, 0.8);
 		public static Color utsButtonColor = new Color(0, 0.745, 1);
@@ -25,12 +25,12 @@ namespace UTSHelps
 		public App ()
 		{
 			// The root page of your application
-			MainPage = mainNavigationPage = new NavigationPage(mainFrame.View);
-			NavigationPage.SetBackButtonTitle (mainNavigationPage, "Back");
+			MainPage = MainNavigationPage = new NavigationPage(mainFrame.View);
+			NavigationPage.SetBackButtonTitle (MainNavigationPage, "Back");
 
 			//The code below can be improved such as using the themes
-			mainNavigationPage.BarBackgroundColor = utsBackgroundColor;
-			mainNavigationPage.BarTextColor = Color.White;
+			MainNavigationPage.BarBackgroundColor = utsBackgroundColor;
+			MainNavigationPage.BarTextColor = Color.White;
 		}
 
 		protected override void OnStart ()
