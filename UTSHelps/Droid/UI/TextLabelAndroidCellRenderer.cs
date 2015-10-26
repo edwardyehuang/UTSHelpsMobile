@@ -24,47 +24,27 @@ namespace UTSHelps.Droid
 			var view = convertView;
 
 			if (view == null) {
-				
-				view = new Android.Widget.RelativeLayout (context);
+				view = (context as Activity).LayoutInflater.Inflate(Resource.Layout.cell, null);
 			}
-
-			var layout1 = new LinearLayout (context);
-
-			TextView label = new TextView (context);
+				
+			TextView label =  (Android.Widget.TextView)view.FindViewById (Resource.Id.textLabel);
 			label.Text = cell.Label;
-			label.SetTextColor (cell.LabelColor.ToAndroid ());
-			label.TextSize = 24;
 
-			if (cell.XAlign == Xamarin.Forms.TextAlignment.Start)
-				label.Gravity = GravityFlags.Left | GravityFlags.CenterVertical;
-			else if (cell.XAlign == Xamarin.Forms.TextAlignment.Center) {
+			label.SetTextColor (cell.LabelColor.ToAndroid ());
+
+			if (cell.XAlign == Xamarin.Forms.TextAlignment.Center) {
 				label.Gravity = GravityFlags.Center;
 			}
 
-			var layout3 = new LinearLayout (context);
+			// Detail on the right
+			TextView DetailText = (Android.Widget.TextView) view.FindViewById (Resource.Id.detailTextLabel);
 
+			if (cell.Text != null)
+				DetailText.Text = cell.Text;
+			else
+				DetailText.Visibility = Android.Views.ViewStates.Invisible;
 
-			TextView DetailText = new TextView (context);
-			label.Text = cell.Label;
-			label.SetTextColor (cell.LabelColor.ToAndroid ());
-			DetailText.Gravity = GravityFlags.Left | GravityFlags.CenterVertical;
-
-		
-			layout3.LayoutParameters = new ViewGroup.LayoutParams (ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
-
-			layout3.AddView (DetailText);
-
-			layout1.AddView (label);
-			layout1.AddView (layout3);
-			 
-			layout1.LayoutParameters = new ViewGroup.LayoutParams (ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-
-			((Android.Widget.RelativeLayout)view).AddView (layout1);
-
-		
-
-			view.SetBackgroundColor (cell.BackgrondColor.ToAndroid ());
-			
+			view.SetBackgroundColor (cell.BackgroundColor.ToAndroid ());
 
 			return view;
 		}
