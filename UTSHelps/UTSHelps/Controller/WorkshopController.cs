@@ -72,26 +72,31 @@ namespace UTSHelps.Controller
 			AddInformation ("Booking Count", session.BookingCount);
 
 			string daysOfWeekShort = session.DaysOfWeek;
-			daysOfWeekShort.Replace ("1", "Mon");
-			daysOfWeekShort.Replace ("2", "Tue");
-			daysOfWeekShort.Replace ("3", "Wed");
-			daysOfWeekShort.Replace ("4", "Thur");
-			daysOfWeekShort.Replace ("5", "Fri");
-			daysOfWeekShort.Replace ("6", "Sat");
-			daysOfWeekShort.Replace ("7", "Sun");
-			daysOfWeekShort.Replace ("0", "Sun");
+			if (daysOfWeekShort != null) {
+				
+				daysOfWeekShort.Replace ("1", "Mon");
+				daysOfWeekShort.Replace ("2", "Tue");
+				daysOfWeekShort.Replace ("3", "Wed");
+				daysOfWeekShort.Replace ("4", "Thur");
+				daysOfWeekShort.Replace ("5", "Fri");
+				daysOfWeekShort.Replace ("6", "Sat");
+				daysOfWeekShort.Replace ("7", "Sun");
+				daysOfWeekShort.Replace ("0", "Sun");
 
-			string daysOfWeekFull = session.DaysOfWeek;
-			daysOfWeekFull.Replace ("1", "Monday");
-			daysOfWeekFull.Replace ("2", "Tuesday");
-			daysOfWeekFull.Replace ("3", "Wednesday");
-			daysOfWeekFull.Replace ("4", "Thursday");
-			daysOfWeekFull.Replace ("5", "Friday");
-			daysOfWeekFull.Replace ("6", "Saturday");
-			daysOfWeekFull.Replace ("7", "Sunday");
-			daysOfWeekFull.Replace ("0", "Sunday");
+				string daysOfWeekFull = session.DaysOfWeek;
+				daysOfWeekFull.Replace ("1", "Monday");
+				daysOfWeekFull.Replace ("2", "Tuesday");
+				daysOfWeekFull.Replace ("3", "Wednesday");
+				daysOfWeekFull.Replace ("4", "Thursday");
+				daysOfWeekFull.Replace ("5", "Friday");
+				daysOfWeekFull.Replace ("6", "Saturday");
+				daysOfWeekFull.Replace ("7", "Sunday");
+				daysOfWeekFull.Replace ("0", "Sunday");
+			
+			
 
-			AddInformation ("Days of week", daysOfWeekShort, () => PopTextPage("Description", daysOfWeekFull));
+				AddInformation ("Days of week", daysOfWeekShort, () => PopTextPage ("Description", daysOfWeekFull));
+			}
 
 
 

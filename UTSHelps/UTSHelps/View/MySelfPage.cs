@@ -177,7 +177,8 @@ namespace UTSHelps.View
 
 			AddSkinButton ("UTS Blue", new Color (0, 0.6, 0.8));
 			AddSkinButton ("Helps Red", new Color (0.91, 0, 0.027));
-			AddSkinButton ("Edward purple", new Color (0.58, 0.129, 0.57));
+			AddSkinButton ("Edward's purple", new Color (0.58, 0.129, 0.57));
+			AddSkinButton ("John's Chocolate", new Color (0435, 0.305, 0.215));
 
 			tableView.Root.Add (SkinButtonsSection);
 
