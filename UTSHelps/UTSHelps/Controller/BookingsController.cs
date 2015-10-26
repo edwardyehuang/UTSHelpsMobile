@@ -1,6 +1,7 @@
 ﻿using System;
 using UTSHelps.View;
 using UTSHelps.Model;
+using UTSHelps.UI;
 using Xamarin.Forms;
 using System.Diagnostics;
 using ZXing;
@@ -12,6 +13,7 @@ namespace UTSHelps.Controller
 	{
 		public BookingsController (MainData mainData) : base(new BookingsPage(), mainData.BookingsData)
 		{
+			View.ToolbarItems.Add(new ToolbarItem ("History", "icon_latest.png", ViewBookingHistories));
 		}
 
 		public override void UpdateData ()
@@ -80,6 +82,24 @@ namespace UTSHelps.Controller
 
 		}
 
+		public void ViewBookingHistories ()
+		{
+			var table = new TableView ();
+			var mainSection = new TableSection ();
+
+			foreach (Booking booking in ((Bookings)Model).bookingHistories) {
+
+				mainSection.Add (new TextCell{ Text = booking.topic});
+			}
+
+			(table.Root = new TableRoot ()).Add (mainSection);
+
+			View.Navigation.PushAsync (new ContentPage {
+				Title = "Booking History",
+				Content = table
+			});
+		}
+
 		public void RecordAttandance(string requestPart)
 		{
 			try
@@ -118,11 +138,11 @@ namespace UTSHelps.Controller
 			}
 			catch (NullReferenceException e) {
 
-				Debug.WriteLine ("Invaild request part : " + requestPart);
+				Debug.WriteLine ("Invaild request part : " + e.Message);
 			}
 			catch (IndexOutOfRangeException e) {
 
-				Debug.WriteLine ("Invaild request part : " + requestPart);
+				Debug.WriteLine ("Invaild request part : " + e.Message);
 			}
 		}
 	}

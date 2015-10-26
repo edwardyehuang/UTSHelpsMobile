@@ -14,6 +14,7 @@ namespace UTSHelps.Model
 	public class Bookings : HelpsBase
 	{
 		public List<Booking> bookings { get; set; } = new List<Booking>();
+		public List<Booking> bookingHistories { get; set; } = new List<Booking>();
 
 		public Bookings ()
 		{
@@ -37,9 +38,30 @@ namespace UTSHelps.Model
 			return null;
 		}
 
+		public Booking GetBookingHistory(string workShopId)
+		{
+			foreach (Booking booking in bookingHistories) {
+
+				if (booking.workshopID.Equals (workShopId)) {
+
+					return booking;
+				}
+			}
+
+			return null;
+		}
+
 		public override void UpdateData ()
 		{
 			base.UpdateData ();
+
+			string bookingHistoriesJson = App.Setting.GetSettingValue ("BookingHistories");
+
+			if (bookingHistoriesJson != null) {
+
+				bookingHistories = JsonConvert.DeserializeObject<List<Booking>>(bookingHistoriesJson);
+			}
+
 
 			server.SendRequest (new HttpRequestMessage(HttpMethod.Get,
 				"api/workshop/booking/search?studentId=" + HelpsData.SelfData.Info.StudentId));
@@ -55,10 +77,18 @@ namespace UTSHelps.Model
 				JArray sets = (JArray)results["Results"];
 				bookings.Clear();
 
-				foreach (JObject booking in sets) {
+				foreach (JObject bookingObject in sets) {
 
-					bookings.Add(JsonConvert.DeserializeObject<Booking>(booking.ToString()));
+					Booking booking;
+					bookings.Add(booking = JsonConvert.DeserializeObject<Booking>(bookingObject.ToString()));
+
+					if (GetBookingHistory(booking.workshopID) == null)
+					{
+						bookingHistories.Add(booking);
+					}
 				}
+
+				App.Setting.SetSettingValue("BookingHistories", JsonConvert.SerializeObject(bookingHistories, Formatting.Indented));
 
 				if (OnDataUpdated != null) {
 					OnDataUpdated ();

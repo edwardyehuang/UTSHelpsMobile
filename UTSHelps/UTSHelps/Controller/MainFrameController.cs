@@ -64,7 +64,7 @@ namespace UTSHelps.Controller
 		protected void BuildChildViews()
 		{
 			TabbedPage tab = (TabbedPage)View;
-			tab.Children.Add ((new LatestController ()).View);
+//			tab.Children.Add ((new LatestController ()).View);
 			tab.Children.Add ((new WorkShopsSetsController(mainData)).View);
 			tab.Children.Add ((new BookingsController(mainData)).View);
 			tab.Children.Add ((new MySelfController(mainData)
