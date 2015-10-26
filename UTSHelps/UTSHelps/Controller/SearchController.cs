@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace UTSHelps.Controller
 {
@@ -17,6 +18,8 @@ namespace UTSHelps.Controller
 	{
 		public MainData HelpsData {get; set;}
 		public Page parentView { get; set;}
+
+		protected CancellationTokenSource source = new CancellationTokenSource ();
 
 		public SearchController () : base (new SearchView())
 		{
@@ -40,21 +43,31 @@ namespace UTSHelps.Controller
 		{
 			((SearchView)View).SuggestionListView.IsVisible = !text.Equals ("");
 			((SearchView)View).TitleLabel.IsVisible = text.Equals ("");
-			List <Workshop> workshops = await SearchKeywordsInModel (text);
 
-			TableSection section = new TableSection ();
+			source.Cancel ();
 
-			foreach (Workshop shop in workshops) {
+			try
+			{
 
-				TextCell cell = new TextCell {
-					Text = shop.topic,
-				};
+				List <Workshop> workshops = await SearchKeywordsInModel (text, source.Token);
 
-				cell.Tapped += (object sender, EventArgs e) => ShowSectionsInSessions (shop);
-				section.Add (cell);
+				TableSection section = new TableSection ();
+
+				foreach (Workshop shop in workshops) {
+
+					TextCell cell = new TextCell {
+						Text = shop.topic,
+					};
+
+					cell.Tapped += (object sender, EventArgs e) => ShowSectionsInSessions (shop);
+					section.Add (cell);
+				}
+
+				(((SearchView)View).SuggestionListView.Root = new TableRoot()).Add (section);
 			}
+			catch(Exception) {
 
-			(((SearchView)View).SuggestionListView.Root = new TableRoot()).Add (section);
+			}
 		}
 
 		public void OnDoneInput(string text)
@@ -62,49 +75,47 @@ namespace UTSHelps.Controller
 
 		}
 
-		public async Task<List<Workshop>> SearchKeywordsInModel(string keyword)
+		public async Task<List<Workshop>> SearchKeywordsInModel(string keyword, CancellationToken ct)
 		{
 			List <Workshop> results = new List<Workshop> ();
 
-			return await Task.Run (() => {
+			await Task.Run (() => {
+				if (HelpsData != null) {
+					List <double> Similarities = new List<double> ();
 
-				if (HelpsData != null)
-				{
-					List <double>Similarities = new List<double>();
+					foreach (WorkshopSet workshopSet in HelpsData.WorkShopsData.Sets) {
+						if (workshopSet.SetWorkshops != null) {
 
-					foreach (WorkshopSet workshopSet in HelpsData.WorkShopsData.Sets)
-					{
-						if (workshopSet.SetWorkshops != null) 
-						{
+							foreach (Workshop shop in workshopSet.SetWorkshops.workshops) {
+								results.Add (shop);
+								double topicSimilarity = CalculateSimilarity (keyword, shop.topic);
+								double startDateSimilarity = CalculateSimilarity (keyword, shop.GetStartDate ().ToString ());
+								double endDateSimilarity = CalculateSimilarity (keyword, shop.GetEndDate ().ToString ());
+								double campus = CalculateSimilarity (keyword, shop.campus);
 
-							foreach (Workshop shop in workshopSet.SetWorkshops.workshops)
-							{
-								results.Add(shop);
-								Similarities.Add(CalculateSimilarity(keyword, shop.topic));
+								Similarities.Add (topicSimilarity + startDateSimilarity + endDateSimilarity + campus);
 							}
 						}
 					}
 
-					for (int i = 0; i < Similarities.Count; i++)
-					{
-						for (int j = 0; j < Similarities.Count - 1; j++)
-						{
-							if (Similarities[j] < Similarities[j + 1])
-							{
-								double temp1 = Similarities[j];
-								Similarities[j] = Similarities[j + 1];
-								Similarities[j + 1] = temp1;
+					for (int i = 0; i < Similarities.Count; i++) {
+						for (int j = 0; j < Similarities.Count - 1; j++) {
+							if (Similarities [j] < Similarities [j + 1]) {
+								double temp1 = Similarities [j];
+								Similarities [j] = Similarities [j + 1];
+								Similarities [j + 1] = temp1;
 
-								Workshop temp2 = results[j];
-								results[j] = results[j + 1];
-								results[j + 1] = temp2;
+								Workshop temp2 = results [j];
+								results [j] = results [j + 1];
+								results [j + 1] = temp2;
 							}
 						}
 					}
 				}
-
-				return results;
 			});
+
+			return results;
+
 		}
 
 		public void ShowSectionsInSessions(Workshop session)
