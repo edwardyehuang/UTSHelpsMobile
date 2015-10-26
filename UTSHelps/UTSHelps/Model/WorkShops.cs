@@ -25,12 +25,14 @@ namespace UTSHelps.Model
 		{
 			base.UpdateData ();
 
+			GetDataFromServer ();
+			/*
 			if (workshops.Count <= 0) {
 				GetDataFromServer ();
 			}
 			else if (OnDataUpdated != null) {
 				OnDataUpdated ();
-			}
+			}*/
 		}
 
 		public override void GetDataFromServer ()
