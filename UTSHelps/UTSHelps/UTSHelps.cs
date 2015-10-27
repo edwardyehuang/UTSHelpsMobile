@@ -34,6 +34,7 @@ namespace UTSHelps
 			MainNavigationPage.BarTextColor = Color.White;
 
 			//Read Theme
+			MainNavigationPage.BackgroundColor = new Color(1, 1, 1, 0);
 		}
 
 		protected override void OnStart ()

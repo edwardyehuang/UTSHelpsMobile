@@ -38,7 +38,7 @@ namespace UTSHelps.Controller
 
 				TextCell cell = new TextCell {
 					Text = booking.workshopID + " " + booking.topic,
-					TextColor = App.textColor, 
+					TextColor = Color.White
 				};
 
 				cell.Tapped += (object sender, EventArgs e) => ShowSelectedWorkshop (booking);

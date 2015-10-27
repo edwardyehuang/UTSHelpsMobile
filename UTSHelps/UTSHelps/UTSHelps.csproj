@@ -76,6 +76,8 @@
     <Compile Include="Model\Preferences.cs" />
     <Compile Include="Controller\UICustomController.cs" />
     <Compile Include="Controller\SkinController\SimpleSkinController.cs" />
+    <Compile Include="Controller\SkinController\WeatherSkinController.cs" />
+    <Compile Include="View\UI\SuperPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

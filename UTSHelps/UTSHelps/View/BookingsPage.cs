@@ -4,7 +4,7 @@ using UTSHelps.UI;
 
 namespace UTSHelps.View
 {
-	public class BookingsPage : ContentPage
+	public class BookingsPage : SuperPage
 	{
 		public TableView BookingsListView { get;} = new TableView
 		{
@@ -24,6 +24,9 @@ namespace UTSHelps.View
 		{
 			Title = "Booking";
 			Icon = "icon_booking";
+
+			BackgroundColor = new Color (1, 1, 1, 0);
+			BookingsListView.BackgroundColor = new Color (1, 1, 1, 0);
 
 			Content = BookingsListView;
 		}

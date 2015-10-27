@@ -136,6 +136,18 @@
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Content\rainyday\bower.json" />
+    <BundleResource Include="Content\rainyday\package.json" />
+    <BundleResource Include="Content\test.html" />
+    <BundleResource Include="Content\rainyday\dist\rainyday.min.js" />
+    <BundleResource Include="Content\rainyday\.travis.yml" />
+    <BundleResource Include="Content\rainyday\demo1.html" />
+    <BundleResource Include="Content\rainyday\demo2.html" />
+    <BundleResource Include="Content\rainyday\demo3.html" />
+    <BundleResource Include="Content\rainyday\demo4.html" />
+    <BundleResource Include="Content\rainyday\demo5.html" />
+    <BundleResource Include="Content\rainyday\Gruntfile.js" />
+    <BundleResource Include="Content\rainyday\rainyday.js" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -144,6 +156,10 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <None Include="Content\rainyday\.DS_Store" />
+    <None Include="Content\rainyday\.gitignore" />
+    <None Include="Content\rainyday\LICENSE" />
+    <None Include="Content\rainyday\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -152,6 +168,8 @@
     <Compile Include="UI\TextLabeliOSCellRenderer.cs" />
     <Compile Include="DependencyService\Setting_iOS.cs" />
     <Compile Include="DependencyService\Event_iOS.cs" />
+    <Compile Include="UI\SuperPageRenderer.cs" />
+    <Compile Include="UI\WeatherView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />
@@ -163,6 +181,7 @@
     <Folder Include="Resources\Renderer\" />
     <Folder Include="UI\" />
     <Folder Include="DependencyService\" />
+    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
