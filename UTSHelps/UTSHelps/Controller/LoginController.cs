@@ -25,6 +25,9 @@ namespace UTSHelps.Controller
 		{
 			((LoginPage)View).SignInButton.IsEnabled = true;
 			((LoginPage)View).TitleLabel.Text = "UTS:Helps";
+
+			((LoginPage)View).UsernameEntry.Keyboard = Keyboard.Numeric;
+			((LoginPage)View).PasswordEntry.Text = "";
 		}
 
 		public void OnClickedOfflineButton()
@@ -67,6 +70,13 @@ namespace UTSHelps.Controller
 			base.RegViewEvents ();
 			//((LoginPage)View).OfflineButton.Clicked += (object sender, EventArgs e) => OnClickedOfflineButton ();
 			((LoginPage)View).SignInButton.Clicked += (object sender, EventArgs e) => OnClickedLoginButton();
+			ReSignin ();
+		}
+
+		public override void UpdateData ()
+		{
+			base.UpdateData ();
+			((LoginPage)View).UsernameEntry.Focus ();
 		}
 
 		public void DidReadResponse (string stringRead)
