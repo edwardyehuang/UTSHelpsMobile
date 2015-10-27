@@ -74,6 +74,8 @@
     <Compile Include="Controller\DependencyService\IEvent.cs" />
     <Compile Include="Controller\DependencyService\ISetting.cs" />
     <Compile Include="Model\Preferences.cs" />
+    <Compile Include="Controller\UICustomController.cs" />
+    <Compile Include="Controller\SkinController\SimpleSkinController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -129,5 +131,6 @@
     <Folder Include="View\UI\" />
     <Folder Include="Model\Controls\" />
     <Folder Include="Controller\DependencyService\" />
+    <Folder Include="Controller\SkinController\" />
   </ItemGroup>
 </Project>

@@ -41,6 +41,8 @@ namespace UTSHelps.View
 
 		public WorkshopPage ()
 		{
+			NavigationPage.SetBackButtonTitle (App.MainNavigationPage, "Back");
+
 			BookButton.BackgroundColor = Color.Green;
 			BookButton.LabelColor = Color.White;
 

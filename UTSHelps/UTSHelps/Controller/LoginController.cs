@@ -97,8 +97,6 @@ namespace UTSHelps.Controller
 				{
 					OnFailSignin();
 				}
-
-
 			}
 			catch (InvalidCastException e) {
 

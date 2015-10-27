@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using UTSHelps.Model;
 using UTSHelps.UI;
+using UTSHelps.Controller;
 using System.Diagnostics;
 
 namespace UTSHelps.View
@@ -59,7 +60,7 @@ namespace UTSHelps.View
 			var cell = new TextLabelCell (){ Label = "Change skin"};
 
 			cell.HasArrow = true;
-			cell.Tapped += (sender, e) => PopColorSelectionPage ();
+			cell.Tapped += (sender, e) => Navigation.PushAsync ((new UICustomController ()).View);
 
 			section.Add (cell);
 
