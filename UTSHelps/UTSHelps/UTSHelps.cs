@@ -5,6 +5,7 @@ using UTSHelps.View;
 using UTSHelps.Controller;
 using UTSHelps.DependencyServices;
 
+
 namespace UTSHelps
 {
 	public class App : Application

@@ -7,6 +7,8 @@ using EventKit;
 using UTSHelps.DependencyServices;
 using UTSHelps.iOS;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 [assembly: Xamarin.Forms.Dependency (typeof (Event_iOS))]
 namespace UTSHelps.iOS
@@ -43,7 +45,7 @@ namespace UTSHelps.iOS
 		{
 			// create a new EKEventEditViewController. This controller is built in an allows
 			// the user to create a new, or edit an existing event.
-			/*
+
 			EventKitUI.EKEventEditViewController eventController =
 				new EventKitUI.EKEventEditViewController ();
 
@@ -60,17 +62,25 @@ namespace UTSHelps.iOS
 
 			// show the event controller
 
-			UIViewController topVc = ((AppDelegate)UIApplication.SharedApplication.Delegate).Window.RootViewController;
+			UIViewController topVc = UIApplication.SharedApplication.KeyWindow.RootViewController;
 
-			topVc.PresentViewController (eventController, true, null);*/
+			topVc.PresentViewController (eventController, true, null);
 
+			
+
+			/*
 			EKEventStore store = ((AppDelegate)UIApplication.SharedApplication.Delegate).EventStore;
+
 			EKEvent newEvent = EKEvent.FromStore (store);
+		
 			newEvent.Title = name;
 			newEvent.StartDate = DateTimeToNSDate (startTime);
 			newEvent.EndDate = DateTimeToNSDate (endTime);
 
+
+
 			newEvent.Calendar = store.DefaultCalendarForNewEvents;
+
 
 			NSError err;
 			bool isSuceess = store.SaveEvent(newEvent, EKSpan.ThisEvent, out err);
@@ -78,11 +88,14 @@ namespace UTSHelps.iOS
 			if (isSuceess) {
 
 				new UIAlertView ("Add suceess", "Suceess add event to your reminder", null, "ok", null).Show ();
+
+
 			} else {
 
 				new UIAlertView ("Add fail", "Fail add event to your reminder", null, "ok", null).Show ();
 				Debug.WriteLine (err.ToString ());
 			}
+			*/
 		}
 
 		protected class CreateEventEditViewDelegate : EventKitUI.EKEventEditViewDelegate
