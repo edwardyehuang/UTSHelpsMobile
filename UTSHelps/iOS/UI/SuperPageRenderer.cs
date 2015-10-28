@@ -12,12 +12,15 @@ using UTSHelps;
 using Foundation;
 using UIKit;
 
-[assembly:ExportRenderer (typeof(SuperPage), typeof(SuperPageRenderer))]
+using CoreGraphics;
+
+[assembly:ExportRenderer (typeof(NavigationPage), typeof(SuperPageRenderer))]
 namespace UTSHelps.iOS
 {
-	public class SuperPageRenderer : PageRenderer
+	public class SuperPageRenderer : NavigationRenderer
 	{
-		protected WeatherView weatherView = new WeatherView();
+		protected WeatherWebView weatherWebView;
+		//protected WeatherView weatherView;
 
 		protected override void OnElementChanged (VisualElementChangedEventArgs e)
 		{
@@ -59,14 +62,21 @@ namespace UTSHelps.iOS
 			//Setup weather background
 			if (weatherType.Equals ("Rain")) {
 
-				weatherView.RemoveFromSuperview ();
-				weatherView.Frame = View.Frame;
+				if (weatherWebView != null) {
+					weatherWebView.RemoveFromSuperview ();
+					weatherWebView = null;
+				}
+
+				weatherWebView = new WeatherWebView ();
+				weatherWebView.Frame = View.Frame;
+
+	//			weatherView.Frame = new CoreGraphics.CGRect (0, 0, View.Frame.Width, View.Frame.Height / 2);
 
 			//	weatherView.BackgroundColor = (new Color (1, 1, 1, 0.3)).ToUIColor();
 
-				View.AddSubview (weatherView);
+				View.AddSubview (weatherWebView);
 
-				View.SendSubviewToBack (weatherView);
+				View.SendSubviewToBack (weatherWebView);
 			}
 		}
 

@@ -36,9 +36,11 @@ namespace UTSHelps.Controller
 
 			foreach (Booking booking in bookings.bookings) {
 
-				TextCell cell = new TextCell {
-					Text = booking.workshopID + " " + booking.topic,
-					TextColor = Color.White
+				TextLabelCell cell = new TextLabelCell {
+					Label = booking.workshopID + " " + booking.topic,
+					LabelColor = Color.Black,
+					BackgroundColor = new Color(1, 1, 1, 0.15),
+					HasLabelShadow = false,
 				};
 
 				cell.Tapped += (object sender, EventArgs e) => ShowSelectedWorkshop (booking);

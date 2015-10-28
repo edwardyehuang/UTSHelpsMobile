@@ -29,6 +29,8 @@ namespace UTSHelps.UI
 
 		public bool IsVisible { get; set; } = true;
 
+		public bool HasLabelShadow { get; set; } = false;
+
 
 		public TextLabelCell ()
 		{

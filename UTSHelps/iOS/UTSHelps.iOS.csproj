@@ -136,7 +136,6 @@
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Content\rainyday\bower.json" />
     <BundleResource Include="Content\rainyday\package.json" />
     <BundleResource Include="Content\test.html" />
     <BundleResource Include="Content\rainyday\dist\rainyday.min.js" />
@@ -148,6 +147,8 @@
     <BundleResource Include="Content\rainyday\demo5.html" />
     <BundleResource Include="Content\rainyday\Gruntfile.js" />
     <BundleResource Include="Content\rainyday\rainyday.js" />
+    <BundleResource Include="Content\rainyday\b11.jpg" />
+    <BundleResource Include="Resources\b11.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -169,6 +170,7 @@
     <Compile Include="DependencyService\Setting_iOS.cs" />
     <Compile Include="DependencyService\Event_iOS.cs" />
     <Compile Include="UI\SuperPageRenderer.cs" />
+    <Compile Include="UI\WeatherWebView.cs" />
     <Compile Include="UI\WeatherView.cs" />
   </ItemGroup>
   <ItemGroup>

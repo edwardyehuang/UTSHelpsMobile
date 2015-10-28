@@ -31,11 +31,15 @@ namespace UTSHelps.Controller
 			var cell = new TextLabelCell (){ Label = name, LabelColor = Color.White, BackgroundColor = color };
 
 			cell.HasArrow = false;
-			cell.Tapped += (sender, e) => App.MainNavigationPage.BarBackgroundColor = color;
+			cell.Tapped += (sender, e) => {
+
+				App.MainNavigationPage.BarTextColor = textColor;
+				App.MainNavigationPage.BackgroundColor = Color.White;
+				App.MainNavigationPage.BarBackgroundColor = color;
+			};
 			cell.XAlign = TextAlignment.Center;
 
-			App.MainNavigationPage.BarTextColor = textColor;
-			App.MainNavigationPage.BackgroundColor = color;
+
 
 			App.Setting.SetSettingValue ("SkinType", "Simple");
 

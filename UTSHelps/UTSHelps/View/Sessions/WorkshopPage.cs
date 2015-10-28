@@ -43,6 +43,9 @@ namespace UTSHelps.View
 		{
 			NavigationPage.SetBackButtonTitle (App.MainNavigationPage, "Back");
 
+			BackgroundColor = new Color (0, 0, 0, 0);
+			ShopInfoListView.BackgroundColor = new Color (0, 0, 0, 0);
+
 			BookButton.BackgroundColor = Color.Green;
 			BookButton.LabelColor = Color.White;
 

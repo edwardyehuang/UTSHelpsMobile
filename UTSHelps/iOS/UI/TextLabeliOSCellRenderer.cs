@@ -4,12 +4,16 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using CoreGraphics;
+using CoreAnimation;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 using UTSHelps.UI;
 using UTSHelps.iOS;
+
+
 
 [assembly: ExportRenderer (typeof(TextLabelCell), typeof(TextLabeliOSCellRenderer))]
 namespace UTSHelps.iOS
@@ -56,6 +60,15 @@ namespace UTSHelps.iOS
 			nativeCell.BackgroundColor = cell.BackgroundColor.ToUIColor ();
 			nativeCell.TextLabel.TextColor = cell.LabelColor.ToUIColor ();
 
+			//Add shadow
+			if (cell.HasLabelShadow) {
+				nativeCell.TextLabel.Layer.ShadowColor = nativeCell.TextLabel.TextColor.CGColor;
+				nativeCell.TextLabel.Layer.ShadowOffset = new CGSize (0, 0);
+				nativeCell.TextLabel.Layer.ShadowRadius = 5;
+				nativeCell.TextLabel.Layer.ShadowOpacity = 0.5f;
+
+				//nativeCell.TextLabel.Layer.ShadowPath = UIBezierPath.FromRect (nativeCell.Bounds).CGPath;
+			}
 
 			return nativeCell;
 		}

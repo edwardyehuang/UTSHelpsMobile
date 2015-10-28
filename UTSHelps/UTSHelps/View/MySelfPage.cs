@@ -22,7 +22,8 @@ namespace UTSHelps.View
 			SelfTable.Intent = TableIntent.Settings;
 			Content = SelfTable;
 
-
+			BackgroundColor = new Color (1, 1, 1, 0);
+			SelfTable.BackgroundColor = new Color (1, 1, 1, 0);
 		}
 
 		public void BuildTable (MainData data)

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using UTSHelps;
+using UTSHelps.UI;
 
 namespace UTSHelps.View
 {
-	public class LoginPage : ContentPage
+	public class LoginPage : SuperPage
 	{
 		public Entry UsernameEntry { protected set;  get; } = new Entry {
 			Placeholder = "Student Number",

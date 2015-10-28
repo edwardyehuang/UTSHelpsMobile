@@ -4,7 +4,7 @@ using UTSHelps.UI;
 
 namespace UTSHelps.View
 {
-	public class BookingsPage : SuperPage
+	public class BookingsPage : ContentPage
 	{
 		public TableView BookingsListView { get;} = new TableView
 		{
