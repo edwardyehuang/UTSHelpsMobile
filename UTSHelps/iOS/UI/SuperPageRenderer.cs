@@ -33,18 +33,31 @@ namespace UTSHelps.iOS
 
 		protected virtual void SetupBackgrondView()
 		{
-			SetupWeatherBackground ();
 			//Read global setting
 			string skinType = App.Setting.GetSettingValue("SkinType");
 
 			if (skinType == null)
 				return;
 
-			if (skinType.Equals ("") || skinType.Equals("Simple"))
+			if (skinType.Equals ("") || skinType.Equals ("Simple")) {
+
+				SetupSimpleBackground ();
 				return;
+			}
 
 			if (skinType.Equals ("Weather"))
 				SetupWeatherBackground ();
+		}
+
+		protected virtual void SetupSimpleBackground()
+		{
+			if (weatherWebView != null) {
+				weatherWebView.RemoveFromSuperview ();
+				weatherWebView = null;
+			}
+
+
+
 		}
 
 		protected virtual void SetupWeatherBackground()
@@ -69,10 +82,6 @@ namespace UTSHelps.iOS
 
 				weatherWebView = new WeatherWebView ();
 				weatherWebView.Frame = View.Frame;
-
-	//			weatherView.Frame = new CoreGraphics.CGRect (0, 0, View.Frame.Width, View.Frame.Height / 2);
-
-			//	weatherView.BackgroundColor = (new Color (1, 1, 1, 0.3)).ToUIColor();
 
 				View.AddSubview (weatherWebView);
 
