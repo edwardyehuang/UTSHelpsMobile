@@ -14,6 +14,8 @@ namespace UTSHelps.View
 
 			WorkshopsListView.Intent = TableIntent.Menu;
 			Content = WorkshopsListView;
+
+			BackgroundColor = WorkshopsListView.BackgroundColor = new Color (1, 1, 1, 0);
 		}
 	}
 }

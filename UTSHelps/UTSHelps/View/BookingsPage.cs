@@ -31,7 +31,15 @@ namespace UTSHelps.View
 			Content = BookingsListView;
 		}
 
+		protected override void OnDisappearing ()
+		{
+			base.OnDisappearing ();
+		}
 
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+		}
 	}
 }
 

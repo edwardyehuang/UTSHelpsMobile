@@ -33,6 +33,8 @@ namespace UTSHelps.iOS
 
 		protected virtual void SetupBackgrondView()
 		{
+	//		SetupWeatherBackground ();
+
 			//Read global setting
 			string skinType = App.Setting.GetSettingValue("SkinType");
 

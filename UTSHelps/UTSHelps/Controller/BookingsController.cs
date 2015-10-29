@@ -39,7 +39,6 @@ namespace UTSHelps.Controller
 				TextLabelCell cell = new TextLabelCell {
 					Label = booking.workshopID + " " + booking.topic,
 					LabelColor = Color.Black,
-					BackgroundColor = new Color(1, 1, 1, 0.15),
 					HasLabelShadow = false,
 				};
 

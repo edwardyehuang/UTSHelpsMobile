@@ -88,6 +88,7 @@ namespace UTSHelps.View
 			cell.Tapped += (sender, e) => App.MainNavigationPage.BarBackgroundColor = color;
 			cell.XAlign = TextAlignment.Center;
 
+
 			SkinButtonsSection.Add (cell);
 		}
 

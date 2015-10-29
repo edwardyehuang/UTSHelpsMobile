@@ -1,6 +1,7 @@
 ﻿using System;
 using UTSHelps.View;
 using UTSHelps.Model;
+using UTSHelps.UI;
 using Xamarin.Forms;
 using System.Collections;
 using System.Diagnostics;
@@ -34,10 +35,9 @@ namespace UTSHelps.Controller
 
 			foreach (WorkshopSet shop in shops.Sets) {
 
-				TextCell cell = new TextCell {
-					Text = shop.Name,
-					Detail = shop.Archived,
-					TextColor = App.textColor, 
+				TextLabelCell cell = new TextLabelCell {
+					Label = shop.Name,
+					Text = shop.Archived,
 				};
 
 				cell.Tapped += (sender, e) => ShowSectionsInWorkshopSet (shop);
