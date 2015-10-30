@@ -33,7 +33,7 @@ namespace UTSHelps.iOS
 
 		protected virtual void SetupBackgrondView()
 		{
-	//		SetupWeatherBackground ();
+			SetupWeatherBackground ();
 
 			//Read global setting
 			string skinType = App.Setting.GetSettingValue("SkinType");
@@ -57,13 +57,14 @@ namespace UTSHelps.iOS
 				weatherWebView.RemoveFromSuperview ();
 				weatherWebView = null;
 			}
-
-
-
 		}
 
 		protected virtual void SetupWeatherBackground()
 		{
+			NavigationBar.Alpha = 0.5f;
+			NavigationBar.BackgroundColor = new UIColor (1, 1, 1, 0.5f);
+			//NavigationBar.Translucent = true;
+
 			//Read global setting
 			string weatherType = App.Setting.GetSettingValue("WeatherSkinType");
 

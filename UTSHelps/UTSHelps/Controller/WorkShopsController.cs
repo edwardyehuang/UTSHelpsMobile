@@ -1,6 +1,7 @@
 ﻿using System;
 using UTSHelps.View;
 using UTSHelps.Model;
+using UTSHelps.UI;
 using Xamarin.Forms;
 using System.Collections;
 using System.Diagnostics;
@@ -36,12 +37,11 @@ namespace UTSHelps.Controller
 
 			foreach (Workshop session in sessions.workshops) {
 
-				TextCell cell = new TextCell {
-					Text = session.WorkshopId + " " + session.topic,
-					TextColor = App.textColor, 
+				TextLabelCell cell = new TextLabelCell {
+					Label = session.topic,
 				};
 
-				var cellAction = new MenuItem ();
+				/*var cellAction = new MenuItem ();
 
 				if (session.BookingStatus == BookingStatuses.Booked) {
 
@@ -64,7 +64,7 @@ namespace UTSHelps.Controller
 					cellAction.IsDestructive = false;
 				}
 
-				cell.ContextActions.Add (cellAction);
+				cell.ContextActions.Add (cellAction);*/
 
 				cell.Tapped += (object sender, EventArgs e) => ShowSelectedWorkshop (session);
 				section.Add (cell);
