@@ -22,7 +22,7 @@ namespace UTSHelps.View
 			SelfTable.Intent = TableIntent.Settings;
 			Content = SelfTable;
 
-			BackgroundColor = new Color (1, 1, 1, 0);
+			BackgroundColor = new Color (1, 1, 1, 0.2);
 			SelfTable.BackgroundColor = new Color (1, 1, 1, 0);
 		}
 
@@ -125,7 +125,8 @@ namespace UTSHelps.View
 
 			ContentPage popPage = new ContentPage {
 				Title = title,
-				Content = table
+				Content = table,
+				BackgroundColor =  new Color(1, 1, 1, 0.2)
 			};
 
 			popPage.ToolbarItems.Add (new ToolbarItem ("Save", null, () => {
@@ -143,11 +144,11 @@ namespace UTSHelps.View
 
 		public void PopSelectionEditor(string title, string []selectionsText, Action<string> selection)
 		{
-			TableView selectionTable = new TableView { Intent = TableIntent.Menu };
+			TableView selectionTable = new TableView { Intent = TableIntent.Menu, BackgroundColor = new Color(1, 1, 1, 0) };
 			TableSection mainSection = new TableSection ();
 
 			for (int i = 0; i < selectionsText.Length; i++) {
-				TextCell cell = new TextCell { Text = selectionsText [i] };
+				TextLabelCell cell = new TextLabelCell { Label = selectionsText [i] };
 
 				if (selection != null) {
 					cell.Tapped += (object sender, EventArgs e) => {
@@ -163,32 +164,11 @@ namespace UTSHelps.View
 
 			ContentPage popPage = new ContentPage {
 				Title = title,
-				Content = selectionTable
+				Content = selectionTable,
+				BackgroundColor =  new Color(1, 1, 1, 0.2)
 			};
 
 			Navigation.PushAsync (popPage);
-		}
-
-		public void PopColorSelectionPage()
-		{
-			TableView tableView = new TableView ();
-			tableView.Intent = TableIntent.Menu;
-			tableView.Root = new TableRoot ();
-
-
-			SkinButtonsSection.Clear ();
-
-			AddSkinButton ("UTS Blue", new Color (0, 0.6, 0.8));
-			AddSkinButton ("Helps Red", new Color (0.91, 0, 0.027));
-			AddSkinButton ("Edward's purple", new Color (0.58, 0.129, 0.57));
-			AddSkinButton ("John's Chocolate", new Color (0435, 0.305, 0.215));
-
-			tableView.Root.Add (SkinButtonsSection);
-
-			Navigation.PushAsync (new ContentPage {
-				Content = tableView,
-				Title = "Change Color",
-			});
 		}
 
 		public readonly string[] degrees 	= { "Undergraduate", "Postgraduate" };

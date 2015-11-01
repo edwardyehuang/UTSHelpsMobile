@@ -39,14 +39,15 @@ namespace UTSHelps.Controller
 
 				TextLabelCell cell = new TextLabelCell {
 					Label = session.topic,
+					HasArrow = true
 				};
 
-				/*var cellAction = new MenuItem ();
+				var cellAction = new MenuItem ();
 
 				if (session.BookingStatus == BookingStatuses.Booked) {
 
 					cellAction.Text = "Cancel";
-					cellAction.IsDestructive = false;
+					cellAction.IsDestructive = true;
 					cellAction.Clicked += (sender, e) => CancelWorkShop (session);
 
 				} else if (session.BookingStatus == BookingStatuses.NotBooked) {
@@ -64,7 +65,7 @@ namespace UTSHelps.Controller
 					cellAction.IsDestructive = false;
 				}
 
-				cell.ContextActions.Add (cellAction);*/
+				cell.ContextActions.Add (cellAction);
 
 				cell.Tapped += (object sender, EventArgs e) => ShowSelectedWorkshop (session);
 				section.Add (cell);

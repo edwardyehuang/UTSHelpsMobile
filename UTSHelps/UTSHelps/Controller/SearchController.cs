@@ -26,6 +26,13 @@ namespace UTSHelps.Controller
 			
 		}
 
+		public override void UpdateData ()
+		{
+			base.UpdateData ();
+
+			((SearchView)View).SearchEntry.Focus ();
+		}
+
 		public override void RegViewEvents ()
 		{
 			base.RegViewEvents ();

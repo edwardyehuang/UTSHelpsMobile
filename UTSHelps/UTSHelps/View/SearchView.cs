@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using UTSHelps.UI;
 
 namespace UTSHelps.View
 {
@@ -11,8 +12,8 @@ namespace UTSHelps.View
 			VerticalOptions = LayoutOptions.Start,
 			HasUnevenRows = true,
 		};
-		public Entry SearchEntry { protected set;  get; } = new Entry {
-			Placeholder = "Input keyword here",
+		public SuperEntry SearchEntry { protected set;  get; } = new SuperEntry {
+			Placeholder = "Input any keyword here",
 			VerticalOptions = LayoutOptions.Start,
 		};
 		public Button CloseBtn { get;} = new Button
@@ -64,6 +65,7 @@ namespace UTSHelps.View
 			};
 
 			SuggestionListView.IsVisible = false;
+			SearchEntry.Focus ();
 		
 		}
 	}

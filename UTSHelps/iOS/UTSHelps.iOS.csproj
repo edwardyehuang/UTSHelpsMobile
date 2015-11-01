@@ -169,9 +169,10 @@
     <Compile Include="UI\TextLabeliOSCellRenderer.cs" />
     <Compile Include="DependencyService\Setting_iOS.cs" />
     <Compile Include="DependencyService\Event_iOS.cs" />
-    <Compile Include="UI\SuperPageRenderer.cs" />
     <Compile Include="UI\WeatherWebView.cs" />
     <Compile Include="UI\WeatherView.cs" />
+    <Compile Include="UI\SuperNavPageRenderer.cs" />
+    <Compile Include="UI\SuperEntryiOSRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />

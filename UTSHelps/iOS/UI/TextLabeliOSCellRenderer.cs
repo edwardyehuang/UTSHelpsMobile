@@ -46,6 +46,8 @@ namespace UTSHelps.iOS
 
 			if (cell.Text != null && nativeCell.DetailTextLabel != null) {
 				nativeCell.DetailTextLabel.Text = cell.Text;
+				nativeCell.DetailTextLabel.TextColor = new UIColor (0, 0, 0, 0.65f);
+
 			} 
 
 			nativeCell.Accessory = cell.HasArrow ? UITableViewCellAccessory.DisclosureIndicator : UITableViewCellAccessory.None;
@@ -59,6 +61,7 @@ namespace UTSHelps.iOS
 
 			nativeCell.BackgroundColor = cell.BackgroundColor.ToUIColor ();
 			nativeCell.TextLabel.TextColor = cell.LabelColor.ToUIColor ();
+			
 
 			//Add shadow
 			if (cell.HasLabelShadow) {

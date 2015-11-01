@@ -74,32 +74,36 @@ namespace UTSHelps.Controller
 			string daysOfWeekShort = session.DaysOfWeek;
 			if (daysOfWeekShort != null) {
 				
-				daysOfWeekShort.Replace ("1", "Mon");
-				daysOfWeekShort.Replace ("2", "Tue");
-				daysOfWeekShort.Replace ("3", "Wed");
-				daysOfWeekShort.Replace ("4", "Thur");
-				daysOfWeekShort.Replace ("5", "Fri");
-				daysOfWeekShort.Replace ("6", "Sat");
-				daysOfWeekShort.Replace ("7", "Sun");
-				daysOfWeekShort.Replace ("0", "Sun");
+				daysOfWeekShort = daysOfWeekShort.Replace ("1", "Mon");
+				daysOfWeekShort = daysOfWeekShort.Replace ("2", "Tue");
+				daysOfWeekShort = daysOfWeekShort.Replace ("3", "Wed");
+				daysOfWeekShort = daysOfWeekShort.Replace ("4", "Thur");
+				daysOfWeekShort = daysOfWeekShort.Replace ("5", "Fri");
+				daysOfWeekShort = daysOfWeekShort.Replace ("6", "Sat");
+				daysOfWeekShort = daysOfWeekShort.Replace ("7", "Sun");
+				daysOfWeekShort = daysOfWeekShort.Replace ("0", "Sun");
 
 				string daysOfWeekFull = session.DaysOfWeek;
-				daysOfWeekFull.Replace ("1", "Monday");
-				daysOfWeekFull.Replace ("2", "Tuesday");
-				daysOfWeekFull.Replace ("3", "Wednesday");
-				daysOfWeekFull.Replace ("4", "Thursday");
-				daysOfWeekFull.Replace ("5", "Friday");
-				daysOfWeekFull.Replace ("6", "Saturday");
-				daysOfWeekFull.Replace ("7", "Sunday");
-				daysOfWeekFull.Replace ("0", "Sunday");
-			
-			
+				daysOfWeekFull = daysOfWeekFull.Replace ("1", "Monday");
+				daysOfWeekFull = daysOfWeekFull.Replace ("2", "Tuesday");
+				daysOfWeekFull = daysOfWeekFull.Replace ("3", "Wednesday");
+				daysOfWeekFull = daysOfWeekFull.Replace ("4", "Thursday");
+				daysOfWeekFull = daysOfWeekFull.Replace ("5", "Friday");
+				daysOfWeekFull = daysOfWeekFull.Replace ("6", "Saturday");
+				daysOfWeekFull = daysOfWeekFull.Replace ("7", "Sunday");
+				daysOfWeekFull = daysOfWeekFull.Replace ("0", "Sunday");
 
-				AddInformation ("Days of week", daysOfWeekShort, () => PopTextPage ("Description", daysOfWeekFull));
+				string[] weeks = daysOfWeekFull.Split (',');
+			
+				if (weeks.Length < 2) {
+
+					AddInformation ("Days of week", daysOfWeekFull);
+				}
+				else 
+				{
+					AddInformation ("Days of week", daysOfWeekShort, () => PopTablePage ("Description", weeks));
+				}
 			}
-
-
-
 
 			if (session.BookingStatus == BookingStatuses.Booked) {
 				page.BookButton.Label = "Cancel";
@@ -176,12 +180,6 @@ namespace UTSHelps.Controller
 			}
 
 			section.Add(cell);
-
-/*			#else
-			TextCell cell = new TextCell();
-			cell.Text = label + " : " + text;
-			section.Add(cell);
-			#endif*/
 		}
 
 		public void PopTextPage(string title, string text)
@@ -191,6 +189,34 @@ namespace UTSHelps.Controller
 				Content = new Label {
 					Text = text,
 				}
+			};
+
+			View.Navigation.PushAsync (page);
+		}
+
+		public void PopTablePage (string title, string []texts)
+		{
+			TableView table = new TableView {
+				Root = new TableRoot (),
+				BackgroundColor = new Color(1, 1, 1, 0),
+			};
+
+			TableSection section = new TableSection ();
+
+			foreach (string text in texts) {
+
+				section.Add (new TextLabelCell {
+					Label = text
+				});
+			}
+
+			table.Root.Add (section);
+				
+
+			var page = new ContentPage {
+				Title = title,
+				Content = table,
+				BackgroundColor = new Color(1, 1, 1, 0.2)
 			};
 
 			View.Navigation.PushAsync (page);

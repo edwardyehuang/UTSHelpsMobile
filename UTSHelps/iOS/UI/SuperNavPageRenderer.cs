@@ -14,10 +14,10 @@ using UIKit;
 
 using CoreGraphics;
 
-[assembly:ExportRenderer (typeof(NavigationPage), typeof(SuperPageRenderer))]
+[assembly:ExportRenderer (typeof(NavigationPage), typeof(SuperNavPageRenderer))]
 namespace UTSHelps.iOS
 {
-	public class SuperPageRenderer : NavigationRenderer
+	public class SuperNavPageRenderer : NavigationRenderer
 	{
 		protected WeatherWebView weatherWebView;
 		protected WeatherView weatherView;
