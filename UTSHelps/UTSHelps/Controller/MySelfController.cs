@@ -28,6 +28,7 @@ namespace UTSHelps.Controller
 
 			view.BuildSkinTable ();
 
+
 			var signOutButton = new TextLabelCell () {
 				HasArrow = false,
 				Label = "Sign out",
@@ -41,6 +42,17 @@ namespace UTSHelps.Controller
 
 			view.SelfTable.Root.Add (new TableSection {
 				signOutButton
+			});
+
+			var aboutButton = new TextLabelCell () {
+				HasArrow = true,
+				Label = "About",
+			};
+
+			aboutButton.Tapped += (sender, e) => View.Navigation.PushAsync (new AboutPage ());
+
+			view.SelfTable.Root.Add (new TableSection {
+				aboutButton
 			});
 
 			model.RegStudent (model.Info.StudentId, (IsSuccess) => {
