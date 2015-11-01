@@ -20,7 +20,7 @@ namespace UTSHelps.iOS
 	public class SuperPageRenderer : NavigationRenderer
 	{
 		protected WeatherWebView weatherWebView;
-		//protected WeatherView weatherView;
+		protected WeatherView weatherView;
 
 		protected override void OnElementChanged (VisualElementChangedEventArgs e)
 		{
@@ -78,17 +78,16 @@ namespace UTSHelps.iOS
 			//Setup weather background
 			if (weatherType.Equals ("Rain")) {
 
-				if (weatherWebView != null) {
-					weatherWebView.RemoveFromSuperview ();
-					weatherWebView = null;
+				if (weatherView != null) {
+					weatherView.RemoveFromSuperview ();
+					weatherView = null;
 				}
 
-				weatherWebView = new WeatherWebView ();
-				weatherWebView.Frame = View.Frame;
+				weatherView = new WeatherView (View.Frame);
 
-				View.AddSubview (weatherWebView);
+				View.AddSubview (weatherView);
 
-				View.SendSubviewToBack (weatherWebView);
+				View.SendSubviewToBack (weatherView);
 			}
 		}
 
