@@ -72,8 +72,12 @@ namespace UTSHelps.Controller
 		public async void ScanQRCode()
 		{
 			var scanner = new ZXing.Mobile.MobileBarcodeScanner ();
+			var options = new ZXing.Mobile.MobileBarcodeScanningOptions ();
 
-			var result = await scanner.Scan();
+			options.TryHarder = true;
+			options.PossibleFormats.Add (ZXing.BarcodeFormat.QR_CODE);
+
+			var result = await scanner.Scan(options);
 
 			if (result != null) {
 				Debug.WriteLine ("Scanned barcode: " + result.Text);
