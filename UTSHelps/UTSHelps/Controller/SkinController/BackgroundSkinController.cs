@@ -24,6 +24,8 @@ namespace UTSHelps.Controller
 			backgroundSkinTable.Root.Add (section);
 			((ContentPage)View).Content = backgroundSkinTable;
 
+			View.BackgroundColor = App.GetContentPageBackgroundColor ();
+
 			View.Appearing += (sender, e) =>  View.BackgroundColor = App.GetContentPageBackgroundColor ();
 		}
 

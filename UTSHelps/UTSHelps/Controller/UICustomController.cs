@@ -26,6 +26,8 @@ namespace UTSHelps.Controller
 
 			SkinTable.BackgroundColor = new Color (1, 1, 1, 0);
 
+			View.BackgroundColor = App.GetContentPageBackgroundColor ();
+
 			View.Appearing += (sender, e) =>  View.BackgroundColor = App.GetContentPageBackgroundColor ();
 		}
 
