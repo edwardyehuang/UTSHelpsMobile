@@ -118,11 +118,24 @@ namespace UTSHelps.Controller
 							foreach (Workshop shop in workshopSet.SetWorkshops.workshops) {
 								results.Add (shop);
 								double topicSimilarity = CalculateSimilarity (keyword, shop.topic);
-								double startDateSimilarity = CalculateSimilarity (keyword, shop.GetStartDate ().ToString ());
-								double endDateSimilarity = CalculateSimilarity (keyword, shop.GetEndDate ().ToString ());
+								double startDateSimilarity = CalculateSimilarity (keyword, shop.GetStartDateString());
+								double endDateSimilarity = CalculateSimilarity (keyword, shop.GetEndDateString());
+								double startTimeSimilarity = CalculateSimilarity (keyword, shop.GetStartTimeString());
+								double endTimeSimilarity = CalculateSimilarity (keyword, shop.GetEndTimeString());
 								double campus = CalculateSimilarity (keyword, shop.campus);
+								double idSimilarity = CalculateSimilarity (keyword, shop.WorkshopId);
 
-								Similarities.Add (topicSimilarity + startDateSimilarity + endDateSimilarity + campus);
+								if (startDateSimilarity == 1 && startTimeSimilarity == 1)
+								{
+									startDateSimilarity = startTimeSimilarity = 2;
+								}
+
+								if (endDateSimilarity == 1 && endTimeSimilarity == 1)
+								{
+									endDateSimilarity = endTimeSimilarity = 2;
+								}
+
+								Similarities.Add (GetMax(topicSimilarity, startDateSimilarity, endDateSimilarity, startTimeSimilarity, endTimeSimilarity, campus, idSimilarity));
 							}
 						}
 					}
@@ -145,6 +158,18 @@ namespace UTSHelps.Controller
 
 			return results;
 
+		}
+
+		public double GetMax(params double[] values)
+		{
+			double max = values [0];
+
+			foreach (double value in values)
+			{
+				if (value > max) max = value;
+			}
+
+			return max;
 		}
 
 		public void ShowSectionsInSessions(Workshop session)

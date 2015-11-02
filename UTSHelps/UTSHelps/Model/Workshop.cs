@@ -58,7 +58,7 @@ namespace UTSHelps.Model
 			
 		}
 
-		public DateTime GetStartDate()
+		public DateTime GetStartDateTime()
 		{
 			string []parts = StartDate.Split('T');
 			string []dateParts = parts [0].Split ('-');
@@ -73,7 +73,7 @@ namespace UTSHelps.Model
 			);
 		}
 
-		public DateTime GetEndDate()
+		public DateTime GetEndDateTime()
 		{
 			string []parts = EndDate.Split('T');
 			string []dateParts = parts [0].Split ('-');
@@ -87,6 +87,35 @@ namespace UTSHelps.Model
 				int.Parse (timeParts [2])
 			);
 		}
+
+		public string GetStartDateString()
+		{
+			string []parts = StartDate.Split('T');
+
+			return parts [0];
+		}
+
+		public string GetEndDateString()
+		{
+			string []parts = EndDate.Split('T');
+
+			return parts [0];
+		}
+
+		public string GetStartTimeString()
+		{
+			string []parts = StartDate.Split('T');
+
+			return parts [1];
+		}
+
+		public string GetEndTimeString()
+		{
+			string []parts = EndDate.Split('T');
+
+			return parts [1];
+		}
+
 
 
 		public void Book()

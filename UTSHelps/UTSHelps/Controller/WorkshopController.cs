@@ -44,7 +44,7 @@ namespace UTSHelps.Controller
 			page.AddToReminderButton.Tapped += (sender, e) => {
 				try
 				{
-					DependencyService.Get<IEvent>().AddEvent(session.topic, session.GetStartDate(), session.GetEndDate());
+					DependencyService.Get<IEvent>().AddEvent(session.topic, session.GetStartDateTime(), session.GetEndDateTime());
 				}
 				catch (Exception exception)
 				{
