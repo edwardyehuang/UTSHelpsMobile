@@ -25,6 +25,7 @@ namespace UTSHelps.View
 			Title = "Booking";
 			Icon = "icon_booking";
 
+
 			BackgroundColor = new Color (1, 1, 1, 0.2);
 			BookingsListView.BackgroundColor = new Color (1, 1, 1, 0);
 

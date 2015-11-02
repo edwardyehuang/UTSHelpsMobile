@@ -40,6 +40,9 @@ namespace UTSHelps
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
+
+			ApplyNavBarColor (App.Setting.GetSettingValue ("NavBarColor"));
+
 		}
 
 		protected override void OnSleep ()
@@ -50,6 +53,32 @@ namespace UTSHelps
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+		}
+
+		public static void ApplyNavBarColor(string colorName)
+		{
+			if (colorName == null)
+				return;
+
+			if (colorName.Equals (""))
+				return;
+
+
+			if (colorName.Equals ("UTS Blue"))
+				ApplyNavBarColor (new Color (0, 0.6, 0.8), Color.White);
+			else if (colorName.Equals("Helps Red"))
+				ApplyNavBarColor (new Color (0.91, 0, 0.027), Color.White);
+			else if (colorName.Equals("Edward's purple"))
+				ApplyNavBarColor (new Color (0.58, 0.129, 0.57, 1), Color.White);
+			else if (colorName.Equals("John's love"))
+				ApplyNavBarColor (new Color (0.435, 0.305, 0.215), Color.White);
+
+		}
+
+		public static void ApplyNavBarColor(Color color, Color textColor)
+		{
+			App.MainNavigationPage.BarTextColor = textColor;
+			App.MainNavigationPage.BarBackgroundColor = color;
 		}
 	}
 }

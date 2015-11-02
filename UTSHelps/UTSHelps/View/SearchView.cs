@@ -36,7 +36,7 @@ namespace UTSHelps.View
 
 		public SearchView ()
 		{
-			BackgroundColor = App.utsBackgroundColor;
+			BackgroundColor = App.MainNavigationPage.BarBackgroundColor;
 
 			SearchEntry.BackgroundColor = Color.White;
 

@@ -20,7 +20,7 @@ namespace UTSHelps.Controller
 			AddSkinButton ("UTS Blue", new Color (0, 0.6, 0.8), Color.White);
 			AddSkinButton ("Helps Red", new Color (0.91, 0, 0.027), Color.White);
 			AddSkinButton ("Edward's purple", new Color (0.58, 0.129, 0.57, 1), Color.White);
-			AddSkinButton ("John's Chocolate", new Color (0435, 0.305, 0.215), Color.White);
+			AddSkinButton ("John's love", new Color (0.435, 0.305, 0.215), Color.White);
 
 			simpleSkinTable.Root.Add (section);
 			((ContentPage)View).Content = simpleSkinTable;
@@ -33,17 +33,20 @@ namespace UTSHelps.Controller
 			cell.HasArrow = false;
 			cell.Tapped += (sender, e) => {
 
-				App.MainNavigationPage.BarTextColor = textColor;
-				App.MainNavigationPage.BackgroundColor = Color.White;
-				App.MainNavigationPage.BarBackgroundColor = color;
+				App.ApplyNavBarColor(name);
+				App.Setting.SetSettingValue ("NavBarColor", name);
 			};
 			cell.XAlign = TextAlignment.Center;
 
 
 
-			App.Setting.SetSettingValue ("SkinType", "Simple");
-
 			section.Add (cell);
+		}
+
+		public void ApplyColor(string name)
+		{
+			
+
 		}
 
 
