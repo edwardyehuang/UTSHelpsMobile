@@ -152,7 +152,7 @@ namespace UTSHelps.View
 
 				if (selection != null) {
 					cell.Tapped += (object sender, EventArgs e) => {
-						selection (cell.Text);
+						selection (cell.Label);
 						Navigation.PopAsync();
 					};
 				}
