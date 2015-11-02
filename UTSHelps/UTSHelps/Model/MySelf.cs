@@ -51,6 +51,8 @@ namespace UTSHelps.Model
 
 					if (results["IsSuccess"].ToString().Equals("True"))
 					{
+
+						//Save to local
 						App.Setting.SetSettingValue("UserInfo", jsonStr);
 						callback(true);
 					}
@@ -74,9 +76,11 @@ namespace UTSHelps.Model
 
 				try
 				{
+					Debug.WriteLine(request.ToString());
+
 					JObject results = JObject.Parse (resultsRead);
 
-					Debug.WriteLine(results["IsSuccess"].ToString());
+					Debug.WriteLine(results.ToString());
 
 					callback(results["IsSuccess"].ToString().Equals("True"));
 				}

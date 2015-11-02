@@ -13,11 +13,13 @@ namespace UTSHelps.View
 					new TableSection {
 						new TextLabelCell {
 							Label = "UTS : Helps",
+							XAlign = TextAlignment.Center,
 						}
 					},
 					new TableSection {
 						new TextLabelCell {
 							Label = "Copyright © Group 15 2015",
+							XAlign = TextAlignment.Center,
 						}
 					}
 				},

@@ -65,6 +65,7 @@ namespace UTSHelps.Controller
 			page.Title = session.topic;
 
 			AddInformation ("Topic", session.topic);
+			AddInformation ("ID", session.WorkshopId);
 			AddInformation ("Description", session.description, () => PopTextPage("Description", session.description));
 			AddInformation ("Start Date", session.StartDate.Replace("T", " "));
 			AddInformation ("End Data", session.EndDate.Replace("T", " "));

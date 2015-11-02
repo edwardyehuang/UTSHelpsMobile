@@ -42,30 +42,37 @@ namespace UTSHelps.Controller
 					HasArrow = true
 				};
 
-				var cellAction = new MenuItem ();
 
-				if (session.BookingStatus == BookingStatuses.Booked) {
+				//Simple theme
+				if (((WorkshopsPage)View).BackgroundColor.A == 1) {
 
-					cellAction.Text = "Cancel";
-					cellAction.IsDestructive = true;
-					cellAction.Clicked += (sender, e) => CancelWorkShop (session);
+					var cellAction = new MenuItem ();
 
-				} else if (session.BookingStatus == BookingStatuses.NotBooked) {
+					if (session.BookingStatus == BookingStatuses.Booked) {
 
-					cellAction.Text = "Book";
-					cellAction.IsDestructive = false;
-					cellAction.Clicked += (sender, e) => BookWorkShop (session);
-				} else if (session.BookingStatus == BookingStatuses.Booking) {
+						cellAction.Text = "Cancel";
+						cellAction.IsDestructive = true;
+						cellAction.Clicked += (sender, e) => CancelWorkShop (session);
 
-					cellAction.Text = "Booking";
-					cellAction.IsDestructive = false;
-				} else {
+					} else if (session.BookingStatus == BookingStatuses.NotBooked) {
 
-					cellAction.Text = "Canceling";
-					cellAction.IsDestructive = false;
+						cellAction.Text = "Book";
+						cellAction.IsDestructive = false;
+						cellAction.Clicked += (sender, e) => BookWorkShop (session);
+					} else if (session.BookingStatus == BookingStatuses.Booking) {
+
+						cellAction.Text = "Booking";
+						cellAction.IsDestructive = false;
+					} else {
+
+						cellAction.Text = "Canceling";
+						cellAction.IsDestructive = false;
+					}
+
+
+
+					cell.ContextActions.Add (cellAction);
 				}
-
-				cell.ContextActions.Add (cellAction);
 
 				cell.Tapped += (object sender, EventArgs e) => ShowSelectedWorkshop (session);
 				section.Add (cell);

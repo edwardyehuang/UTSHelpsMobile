@@ -19,7 +19,8 @@ namespace UTSHelps.Model
 		protected HelpsServer server = new HelpsServer
 		{
 			AppKey = "123456",
-			BaseAddress = "http://grp15sdp.danward.me:8080/",
+			//BaseAddress = "http://grp15sdp.danward.me:8080/",
+			BaseAddress = "http://grp15sdp.cloudapp.net/"
 		};
 
 		public HelpsBase ()
@@ -30,6 +31,16 @@ namespace UTSHelps.Model
 		public virtual void UpdateData()
 		{
 			Debug.WriteLine ("Start update data");
+		}
+
+		public virtual void GetDataFromLocal()
+		{
+			Debug.WriteLine ("Get data from local");
+		}
+
+		public virtual void SetDataToLocal()
+		{
+			Debug.WriteLine ("Set data to local");
 		}
 
 		public virtual void GetDataFromServer()

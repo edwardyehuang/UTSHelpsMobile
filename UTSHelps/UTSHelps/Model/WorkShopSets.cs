@@ -14,6 +14,7 @@ namespace UTSHelps.Model
 	public class WorkShopSets : HelpsBase
 	{
 		public List <WorkshopSet> Sets { get; set; } = new List<WorkshopSet>();
+		private const string localDataKey = "WorkshopSets";
 
 		public WorkShopSets () : base()
 		{
@@ -25,6 +26,7 @@ namespace UTSHelps.Model
 			base.UpdateData ();
 
 			if (Sets.Count <= 0) {
+				GetDataFromLocal ();
 				GetDataFromServer ();
 			}
 			else if (OnDataUpdated != null) {
@@ -36,6 +38,21 @@ namespace UTSHelps.Model
 		{
 			base.GetDataFromServer ();
 			server.SendRequest (new HttpRequestMessage (HttpMethod.Get, "api/workshop/workshopSets/true"));
+		}
+
+		public override void GetDataFromLocal ()
+		{
+			base.GetDataFromLocal ();
+
+			string localData = App.Setting.GetSettingValue (localDataKey);
+
+			if (localData != null) 
+			{
+				if (!localData.Equals ("")) 
+				{
+					DidReadResponse (localData);
+				}
+			}
 		}
 
 		public override void DidReadResponse (string stringRead)
@@ -56,6 +73,9 @@ namespace UTSHelps.Model
 						HelpsData = this.HelpsData,
 					});
 				}
+
+				//Save data to local
+				App.Setting.SetSettingValue (localDataKey,stringRead);
 
 				if (OnDataUpdated != null) {
 					OnDataUpdated ();

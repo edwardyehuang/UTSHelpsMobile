@@ -15,6 +15,7 @@ namespace UTSHelps.Model
 	{
 		public List <Workshop> workshops  { get; set; } = new List<Workshop>();
 		public WorkshopSet RelatedWorkshopSet { get; set; }
+		public static readonly string localKey = "Workshops";
 
 		public Workshops () : base()
 		{
@@ -25,6 +26,11 @@ namespace UTSHelps.Model
 		{
 			base.UpdateData ();
 
+			if (workshops.Count == 0) {
+
+				GetDataFromLocal ();
+			}
+
 			GetDataFromServer ();
 			/*
 			if (workshops.Count <= 0) {
@@ -33,6 +39,23 @@ namespace UTSHelps.Model
 			else if (OnDataUpdated != null) {
 				OnDataUpdated ();
 			}*/
+		}
+
+		public override void GetDataFromLocal ()
+		{
+			base.GetDataFromLocal ();
+
+			if (RelatedWorkshopSet != null) {
+				string localData = App.Setting.GetSettingValue (localKey + RelatedWorkshopSet.Id);
+
+				if (localData != null) {
+					if (!localData.Equals ("")) {
+
+						DidReadResponse (localData);
+					}
+
+				}
+			}
 		}
 
 		public override void GetDataFromServer ()
@@ -75,6 +98,11 @@ namespace UTSHelps.Model
 					}
 						
 					workshops.Add(workshop);
+				}
+
+				if (RelatedWorkshopSet != null)
+				{
+					App.Setting.SetSettingValue(localKey + RelatedWorkshopSet.Id, stringRead);
 				}
 
 				if (OnDataUpdated != null) {

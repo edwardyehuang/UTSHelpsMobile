@@ -21,14 +21,34 @@ namespace UTSHelps.Controller
 
 		protected CancellationTokenSource source = new CancellationTokenSource ();
 
-		public SearchController () : base (new SearchView())
+		public SearchController (MainData helpsData) : base (new SearchView())
 		{
-			
+			HelpsData = helpsData;
+
+			helpsData.BookingsData.UpdateData ();
+
+			foreach (WorkshopSet workshopSet in HelpsData.WorkShopsData.Sets) {
+
+				if (workshopSet.SetWorkshops == null) {
+					string localData = App.Setting.GetSettingValue (Workshops.localKey + workshopSet.Id);
+
+					if (localData != null) {
+						if (!localData.Equals ("")) {
+							workshopSet.SetWorkshops = new Workshops ();
+							workshopSet.SetWorkshops.HelpsData = helpsData;
+							workshopSet.SetWorkshops.RelatedWorkshopSet = workshopSet;
+							workshopSet.SetWorkshops.DidReadResponse (localData);
+						}
+					}
+				}
+			}
 		}
 
 		public override void UpdateData ()
 		{
 			base.UpdateData ();
+
+
 
 			((SearchView)View).SearchEntry.Focus ();
 		}
@@ -91,6 +111,8 @@ namespace UTSHelps.Controller
 					List <double> Similarities = new List<double> ();
 
 					foreach (WorkshopSet workshopSet in HelpsData.WorkShopsData.Sets) {
+
+
 						if (workshopSet.SetWorkshops != null) {
 
 							foreach (Workshop shop in workshopSet.SetWorkshops.workshops) {
