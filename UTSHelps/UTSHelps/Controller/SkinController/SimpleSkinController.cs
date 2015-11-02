@@ -24,6 +24,8 @@ namespace UTSHelps.Controller
 
 			simpleSkinTable.Root.Add (section);
 			((ContentPage)View).Content = simpleSkinTable;
+
+			View.Appearing += (sender, e) =>  View.BackgroundColor = App.GetContentPageBackgroundColor ();
 		}
 
 		public void AddSkinButton (string name, Color color, Color textColor)

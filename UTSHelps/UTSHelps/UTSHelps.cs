@@ -80,6 +80,25 @@ namespace UTSHelps
 			App.MainNavigationPage.BarTextColor = textColor;
 			App.MainNavigationPage.BarBackgroundColor = color;
 		}
+
+		public static Color GetContentPageBackgroundColor()
+		{
+			string name = App.Setting.GetSettingValue ("pageBackground");
+
+			if (name == null) {
+
+				return new Color (0.85, 0.85, 0.85, 1);
+			} else if (!name.Equals ("Simple") && !name.Equals ("")) {
+				return new Color (1, 1, 1, 0.2);
+			}
+
+
+			return new Color (0.85, 0.85, 0.85, 1);
+		}
+			
+			
+
 	}
 }
+
 

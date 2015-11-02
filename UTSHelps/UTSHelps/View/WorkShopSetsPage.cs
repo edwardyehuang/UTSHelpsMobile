@@ -16,8 +16,10 @@ namespace UTSHelps.View
 			ShopSetsListView.Intent = TableIntent.Menu;
 			Content = ShopSetsListView;
 
-			BackgroundColor = new Color (1, 1, 1, 0.2);
+			BackgroundColor =  App.GetContentPageBackgroundColor ();
 			ShopSetsListView.BackgroundColor = new Color (1, 1, 1, 0);
+
+			Appearing += (sender, e) =>  BackgroundColor = App.GetContentPageBackgroundColor ();
 		}
 	}
 }

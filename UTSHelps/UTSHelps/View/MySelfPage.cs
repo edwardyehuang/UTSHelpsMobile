@@ -22,9 +22,12 @@ namespace UTSHelps.View
 			SelfTable.Intent = TableIntent.Settings;
 			Content = SelfTable;
 
-			BackgroundColor = new Color (1, 1, 1, 0.2);
+			BackgroundColor = App.GetContentPageBackgroundColor ();
 			SelfTable.BackgroundColor = new Color (1, 1, 1, 0);
+
+			Appearing += (sender, e) =>  BackgroundColor = App.GetContentPageBackgroundColor ();
 		}
+			
 
 		public void BuildTable (MainData data)
 		{

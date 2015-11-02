@@ -23,6 +23,10 @@ namespace UTSHelps.Controller
 			BuildSkinList ();
 
 			((ContentPage)View).Content = SkinTable;
+
+			SkinTable.BackgroundColor = new Color (1, 1, 1, 0);
+
+			View.Appearing += (sender, e) =>  View.BackgroundColor = App.GetContentPageBackgroundColor ();
 		}
 
 		public void BuildSkinList()
@@ -41,7 +45,8 @@ namespace UTSHelps.Controller
 				section.Add(cell);
 			};
 
-			AddSkinCell ("Simple", () => View.Navigation.PushAsync((new SimpleSkinController()).View));
+			AddSkinCell ("Color", () => View.Navigation.PushAsync((new SimpleSkinController()).View));
+			AddSkinCell ("Backgrond", () => View.Navigation.PushAsync((new BackgroundSkinController()).View));
 			//AddSkinCell ("Weather Skin", WeatherSkinSetting ());
 
 

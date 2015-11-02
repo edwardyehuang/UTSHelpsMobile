@@ -15,7 +15,7 @@ namespace UTSHelps.View
 			WorkshopsListView.Intent = TableIntent.Menu;
 			Content = WorkshopsListView;
 
-			BackgroundColor =  new Color (1, 1, 1, 0.2);
+			BackgroundColor =   App.GetContentPageBackgroundColor ();
 			WorkshopsListView.BackgroundColor = new Color (0, 0, 0, 0);
 		}
 	}

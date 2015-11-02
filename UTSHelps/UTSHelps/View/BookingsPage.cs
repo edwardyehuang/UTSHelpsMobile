@@ -26,10 +26,12 @@ namespace UTSHelps.View
 			Icon = "icon_booking";
 
 
-			BackgroundColor = new Color (1, 1, 1, 0.2);
+			BackgroundColor =  App.GetContentPageBackgroundColor ();
 			BookingsListView.BackgroundColor = new Color (1, 1, 1, 0);
 
 			Content = BookingsListView;
+
+			Appearing += (sender, e) =>  BackgroundColor = App.GetContentPageBackgroundColor ();
 		}
 
 		protected override void OnDisappearing ()

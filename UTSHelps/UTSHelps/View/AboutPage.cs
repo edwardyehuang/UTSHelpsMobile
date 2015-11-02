@@ -28,7 +28,8 @@ namespace UTSHelps.View
 
 			};
 
-			BackgroundColor = new Color (1, 1, 1, 0.2);
+			BackgroundColor = App.GetContentPageBackgroundColor ();
+			Appearing += (sender, e) =>  BackgroundColor = App.GetContentPageBackgroundColor ();
 
 		}
 	}
